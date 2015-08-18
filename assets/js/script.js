@@ -11,7 +11,7 @@ app.directive('img', function () {
         restrict: 'E',
         link: function (scope, element, attrs) {
             // show an image-missing image
-            element.on('error',function () {
+            $(element).on('error',function () {
                 var w = $(element).width();
                 var h = $(element).height();
                 // using 20 here because it seems even a missing image will have ~18px width
@@ -98,6 +98,14 @@ app.controller('ListaCatalogosController', function($scope){
     }
   });
 
+
+  $scope.asignSelection = function(valueR){
+    console.log(valueR);
+    $(waitingSelector).val(valueR).parent().addClass('is-dirty');
+    upgrade();
+    closeMenuSitios();
+  }
+
 });
 
 
@@ -136,9 +144,10 @@ function triggerForm(item){
   $(item).trigger('submit');
 }
 
-function openMenuSitios(id){
-  menuRight.setMenuPage('lateral_db_sitios.html', {closeMenu:false, callback:function(){ menuRight.openMenu(); upgrade(); } }  );
+function openMenuSitios(id, page){
+  menuRight.setMenuPage(page, {closeMenu:false, callback:function(){ menuRight.openMenu(); upgrade(); } }  );
   waitingSelector = '#'+id;
+  console.log(waitingSelector);
 }
 function closeMenuSitios(){
   menuRight.closeMenu({callback:function(){ upgrade(); }});

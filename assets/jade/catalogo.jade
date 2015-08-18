@@ -1,23 +1,22 @@
 include _config.jade
 include _mixins.jade
 
-ons-navigator(title="Detalle del producto", var="catalogoDetalle")
 
-  ons-page.catalogo
-    +ons-toolbar('Catálogo')
-    ons-row
-      ons-col
-      ons-col(width="90%")
+ons-page.catalogo
+  +ons-toolbar('Catálogo')
+  ons-row
+    ons-col
+    ons-col(width="90%")
+    
+      nav(ng-controller="ListaCatalogosController")
+        - var listaFams = ['ALUMA', 'ATLAS', 'BASTIDOR', 'CASETÓN', 'VIGA', 'BASTIDOR', 'CIMBRAMEX', 'ESCALERA', 'FARESIN', 'MURO', 'PLATAFORMA', 'PUNTALES', 'RACK', 'RODAMIENTO', 'TORNILLERIA', 'TRABE', 'TUBO Y JUNTA']
+        - for(lF in listaFams)
+          h2.famNombre=listaFams[lF]
+          ons-carousel(swipeable, overscrollable, auto-scroll, auto-refresh, item-width="240px")
+            ons-carousel-item(ng-repeat="item in catalogos | filter:{Familia:'#{listaFams[lF]}'}", ng-click="")
+              .nombre
+                .clave {{item.Clave}}
+                .equipo {{item.Equipo}}
+              .image
+                img(ng-src="db/catalogos_low/{{item.Foto}}", width="100%", alt="")
       
-        nav(ng-controller="ListaCatalogosController")
-          - var listaFams = ['ALUMA', 'ATLAS', 'BASTIDOR', 'CASETÓN', 'VIGA', 'BASTIDOR', 'CIMBRAMEX', 'ESCALERA', 'FARESIN', 'MURO', 'PLATAFORMA', 'PUNTALES', 'RACK', 'RODAMIENTO', 'TORNILLERIA', 'TRABE', 'TUBO Y JUNTA']
-          - for(lF in listaFams)
-            h2.famNombre=listaFams[lF]
-            ons-carousel(swipeable, overscrollable, auto-scroll, auto-refresh, item-width="240px")
-              ons-carousel-item(ng-repeat="item in catalogos | filter:{Familia:'#{listaFams[lF]}'}", ng-click="")
-                .nombre
-                  .clave {{item.Clave}}
-                  .equipo {{item.Equipo}}
-                .image
-                  img(ng-src="db/catalogos_low/{{item.Foto}}", width="100%", alt="")
-        

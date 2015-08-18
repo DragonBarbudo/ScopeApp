@@ -1,0 +1,21 @@
+include _config.jade
+include _mixins.jade
+
+
+ons-list(ng-controller="ListaCatalogosController").selectFromList
+  ons-list-header.filtroHeader
+    ons-row
+      ons-col
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          input(type="text", id="queryFilter", ng-model="query").mdl-textfield__input
+          label(for="queryFilter").mdl-textfield__label Buscar
+      ons-col
+      
+  ons-list-item(ng-animate="'zoom'", ng-show="failed") Ocurrió un error al cargar los sitios.
+  ons-list-item(ng-repeat="item in catalogos | orderBy:'Familia' | filter: query", modifier="tappable").onslistSitios
+    div(ng-click="asignSelection(item.Clave);")
+      ons-row.miniInfo
+        ons-col: strong: span {{item.Clave}}
+        ons-col Fam: <span>{{item.Familia}}</span>
+      ons-row
+        ons-col {{item.Equipo}}

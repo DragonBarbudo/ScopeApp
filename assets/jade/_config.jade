@@ -51,7 +51,7 @@ mixin input(id, label, type, onClick)
       label(for=id).mdl-textfield__label
         span=label
         |  
-      button(type="button", onClick="openMenuSitios('#{id}')").mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored
+      button(type="button", onClick="openMenuSitios('#{id}', '#{onClick}')").mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored
         ons-icon(icon="ion-android-list")
   - else
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label

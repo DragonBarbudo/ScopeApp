@@ -26,7 +26,7 @@ ons-navigator(title="Elegir opción", var="autocomplete")
           ons-col: +input('requerimientoComplementario', 'Requerimiento complementario')
           ons-col
         ons-row
-          ons-col: +input('sitio', 'Sitio', 'text', 'db_sitios.html')
+          ons-col: +input('sitio', 'Sitio', 'text', 'lateral_db_sitios.html')
           ons-col: +input('fechaEntrega', 'Fecha de entrega', 'date')
           ons-col
         hr
@@ -65,7 +65,7 @@ ons-navigator(title="Elegir opción", var="autocomplete")
             ons-col: +input('cantidad', 'Cantidad')
             ons-col: +input('unidad', 'Unidad')
           ons-row
-            ons-col: +input('clave', 'Clave', 'text', 'db_sitios.html')
+            ons-col: +input('clave', 'Clave', 'text', 'lateral_db_catalogos.html')
           ons-row
             ons-col.text-center
               button(type="button", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
