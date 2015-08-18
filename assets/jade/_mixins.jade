@@ -1,0 +1,63 @@
+mixin head(titleText, links, keywords, description)
+  meta(charset="utf-8", lang="es")
+  title=titleText
+  //meta(http-equiv="Content-Security-Policy", content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *")
+  meta(name="format-detection", content="telephone=no")
+  meta(name="msapplication-tap-highlight", content="no")
+  meta(name="description" content=description)
+  meta(name="keywords" content=keywords)
+  meta(name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width")
+  //- each ls in links
+    link(rel="stylesheet", href=ls)  
+  link(rel="stylesheet", href="assets/css/_style.css")
+  //link(rel="icon", type="image/png", href="favicon.png")
+  
+
+
+mixin logo(logo, titulo, dominio)
+  .logo: a(href=dominio): img(src="assets/img/#{logo}", alt=titulo)
+
+
+
+mixin navigation(nav)
+  ons-template(id="menu.html")
+    .text-center(onclick="menu.setMainPage('inicio.html', {closeMenu:true});  upgrade();")
+        img(src="assets/img/scope.svg", alt="SCOPE").secondLogo
+    ons-list
+      - each n in nav
+        ons-list-item(modifier="chevron", onclick="menu.setMainPage('#{n[0]}.html', {closeMenu:true});  upgrade();", class="#{n[0]}")
+          ons-icon(icon="#{n[2]}")
+          |  #{n[1]}
+          
+  ons-template(id="menuRight.html")
+    .m10
+      .text-center(onclick="menu.setMainPage('inicio.html', {closeMenu:true});  upgrade();")
+        img(src="assets/img/scope.svg", alt="SCOPE").secondLogo
+      p Dé click en el botón siguiente para sincronizar los datos guardados del dispositivo con la base de datos global.
+      p Es recomendado tener una conexión a internet estable, de preferencia mediante WiFi si la cantidad de imagenes a cargar es mayor a 10.
+      .text-center
+        button(type="button", ng-click="alert('sincronizando')").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored.syncDBBtn
+          ons-icon(icon="ion-android-sync")
+    hr
+    .credits
+      .text-center
+        p Aplicación desarrollada por <br>
+          strong Servicios Integrados en Ingeniería e Informática.
+       
+
+    
+          
+            
+
+mixin navigationFooter(activePage, nav)
+  ul
+    - each n in nav
+      li: a(href="#{n[0]}.html", class=activePage=== "#{n[0]}" ? "active" : "")=n[1]  
+      
+
+ 
+
+mixin scripts()
+  - each sc in javascripts
+    script(src="assets/js/#{sc}")
+    

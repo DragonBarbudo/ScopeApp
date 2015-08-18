@@ -1,0 +1,71 @@
+- var titulo = "SCOPE"
+- var dominio = "index.html"
+//META TAGS
+- var keywords = ""
+- var description = ""
+- var stylesheets = ['']
+- var javascripts = ['jslib/angular.js', 'jslib/jquery.js', 'jslib/onsenui.js', 'jslib/material.js' ,'script.js']
+// Sitio
+- var logo = "logo.svg"
+- var logoAlt = ""
+
+- var menu = []
+- menu.push(['inicio', 'Inicio'])
+- menu.push(['requerimientos', 'Requerimientos para obras', 'ion-pull-request'])
+- menu.push(['proveedor', 'Proveedor', 'ion-ios-body'])
+- menu.push(['transformacion', 'Transformación', 'ion-wand'])
+- menu.push(['baja', 'Baja de equipo', 'ion-backspace'])
+- menu.push(['inventario', 'Inventario de obra', 'ion-filing'])
+- menu.push(['relacion', 'Envío y recepción', 'ion-arrow-swap'])
+- menu.push(['inspeccion', 'Inspección de la obra', 'ion-search'])
+- menu.push(['acero', 'Acero', 'ion-cube'])
+- menu.push(['concreto', 'Concreto', 'ion-android-funnel'])
+- menu.push(['catalogo', 'Catálogo', 'ion-images'])
+
+
+
+mixin sliding-menu
+  ons-sliding-menu(main-page="fullContainer.html", menu-page="menuRight.html", side="right", max-slide-distance="450px", var="menuRight", swipe-target-width="200px", swipeable="false")
+  ons-template(id="fullContainer.html")
+    ons-page
+        ons-sliding-menu(main-page="inicio.html", menu-page="menu.html", side="left", max-slide-distance="350px", var="menu", swipe-target-width="200px")
+
+
+
+mixin ons-toolbar(pageTitle)
+  ons-toolbar
+    .left
+      ons-toolbar-button(ng-click="menu.toggleMenu()")
+        ons-icon(icon="ion-navicon")
+    .center=pageTitle
+    .right
+      ons-toolbar-button(ng-click="menuRight.toggleMenu()")
+        ons-icon(icon="ion-gear-a")
+
+mixin input(id, label, type, onClick)
+  - if(!type)
+    - type='text';
+  - if(onClick)
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.inputDeployer
+      input(type=type, id=id, name=id).mdl-textfield__input
+      label(for=id).mdl-textfield__label
+        span=label
+        |  
+      button(type="button", onClick="openMenuSitios('#{id}')").mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored
+        ons-icon(icon="ion-android-list")
+  - else
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      input(type=type, id=id, name=id).mdl-textfield__input
+      label(for=id).mdl-textfield__label=label
+
+
+mixin hrcolors(cl)
+  .hrcolors(class=cl)
+    div
+    div
+    div
+    div
+    div
+    div
+    div
+    div

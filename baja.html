@@ -1,0 +1,145 @@
+
+<!--META TAGS-->
+<!-- Sitio-->
+<ons-page class="baja">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ng-click="menu.toggleMenu()">
+        <ons-icon icon="ion-navicon"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">Baja de equipo</div>
+    <div class="right">
+      <ons-toolbar-button ng-click="menuRight.toggleMenu()">
+        <ons-icon icon="ion-gear-a"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
+    <button type="button" onclick="alert('Realizar transformación');" class="mdl-button mdl-js-button">
+      <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar
+    </button>
+  </ons-bottom-toolbar>
+  <form action="#">
+    <ons-row>
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Información
+      </div>
+    </ons-row>
+    <div class="m10">
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="folioSitio" name="folioSitio" class="mdl-textfield__input"/>
+            <label for="folioSitio" class="mdl-textfield__label">Folio sitio</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="folioScope" name="folioScope" class="mdl-textfield__input"/>
+            <label for="folioScope" class="mdl-textfield__label">Folio SCOPE</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="date" id="fecha" name="fecha" class="mdl-textfield__input"/>
+            <label for="fecha" class="mdl-textfield__label">Fecha</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
+            <input type="text" id="sitio" name="sitio" class="mdl-textfield__input"/>
+            <label for="sitio" class="mdl-textfield__label"><span>Sitio</span> </label>
+            <button type="button" onClick="openMenuSitios('sitio')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+              <ons-icon icon="ion-android-list"></ons-icon>
+            </button>
+          </div>
+        </ons-col>
+        <ons-col></ons-col>
+        <ons-col></ons-col>
+      </ons-row>
+      <hr/>
+    </div>
+    <ons-row>
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Equipos
+      </div>
+    </ons-row>
+    <div class="m10">
+      <ons-row>
+        <table class="mdl-data-table mdl-js-data-table">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+              <th>Clave</th>
+              <th>Descripción</th>
+              <th>Motivo</th>
+              <th ng-controller="AddItemDialogController" class="addButton">
+                <button type="button" ng-click="show('addItem.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                  <ons-icon icon="ion-plus-round"></ons-icon>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>1023</td>
+              <td>Descripción del equipo</td>
+              <td>Motivo de la baja del equipo</td>
+              <td><a href="#">
+                  <ons-icon icon="ion-close-round"></ons-icon></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </ons-row>
+    </div>
+  </form>
+</ons-page>
+<ons-template id="addItem.html">
+  <ons-dialog var="addItemDialog" cancelable="cancelable">
+    <ons-toolbar inline="inline">
+      <div class="center">Añadir nuevo</div>
+    </ons-toolbar>
+    <div class="m10 baja">
+      <p>Datos del equipo</p>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="cantidad" name="cantidad" class="mdl-textfield__input"/>
+            <label for="cantidad" class="mdl-textfield__label">Cantidad</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="clave" name="clave" class="mdl-textfield__input"/>
+            <label for="clave" class="mdl-textfield__label">Clave</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="descripcion" name="descripcion" class="mdl-textfield__input"/>
+            <label for="descripcion" class="mdl-textfield__label">Descripción de equipo</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="motivo" name="motivo" class="mdl-textfield__input"/>
+            <label for="motivo" class="mdl-textfield__label">Motivo de la baja</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col class="text-center">
+          <button type="button" ng-click="addItemDialog.hide()" class="mdl-button mdl-js-button mdl-button--colored">
+            <ons-icon icon="ion-plus-round"></ons-icon> Añadir elemento
+          </button>
+        </ons-col>
+      </ons-row>
+    </div>
+  </ons-dialog>
+</ons-template>

@@ -1,0 +1,197 @@
+
+<!--META TAGS-->
+<!-- Sitio-->
+<ons-navigator title="Detalle del producto" var="catalogoDetalle">
+  <ons-page class="catalogo">
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="menu.toggleMenu()">
+          <ons-icon icon="ion-navicon"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Catálogo</div>
+      <div class="right">
+        <ons-toolbar-button ng-click="menuRight.toggleMenu()">
+          <ons-icon icon="ion-gear-a"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+    <ons-row>
+      <ons-col></ons-col>
+      <ons-col width="90%">
+        <nav ng-controller="ListaCatalogosController">
+          <h2 class="famNombre">ALUMA</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'ALUMA'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">ATLAS</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'ATLAS'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">BASTIDOR</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'BASTIDOR'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">CASETÓN</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'CASETÓN'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">VIGA</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'VIGA'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">BASTIDOR</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'BASTIDOR'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">CIMBRAMEX</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'CIMBRAMEX'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">ESCALERA</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'ESCALERA'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">FARESIN</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'FARESIN'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">MURO</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'MURO'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">PLATAFORMA</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'PLATAFORMA'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">PUNTALES</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'PUNTALES'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">RACK</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'RACK'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">RODAMIENTO</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'RODAMIENTO'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">TORNILLERIA</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'TORNILLERIA'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">TRABE</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'TRABE'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+          <h2 class="famNombre">TUBO Y JUNTA</h2>
+          <ons-carousel swipeable="swipeable" overscrollable="overscrollable" auto-scroll="auto-scroll" auto-refresh="auto-refresh" item-width="240px">
+            <ons-carousel-item ng-repeat="item in catalogos | filter:{Familia:'TUBO Y JUNTA'}" ng-click="">
+              <div class="nombre">
+                <div class="clave">{{item.Clave}}</div>
+                <div class="equipo">{{item.Equipo}}</div>
+              </div>
+              <div class="image"><img ng-src="db/catalogos_low/{{item.Foto}}" width="100%" alt=""/></div>
+            </ons-carousel-item>
+          </ons-carousel>
+        </nav>
+      </ons-col>
+    </ons-row>
+  </ons-page>
+</ons-navigator>

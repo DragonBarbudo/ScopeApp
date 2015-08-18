@@ -1,0 +1,41 @@
+include _config.jade
+include _mixins.jade
+
+mixin buttonMain(item)
+  ons-col(onclick="menu.setMainPage('#{menu[item][0]}.html', {closeMenu: true, animation:'slide'}); upgrade();", class="#{menu[item][0]}")
+    button.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+      ons-icon(icon="#{menu[item][2]}")
+    span=menu[item][1]
+
+ons-page.inicio
+  .m10
+    ons-row
+      ons-col
+      ons-col.text-center
+        img(src="assets/img/scope.svg", alt="SCOPE").mainLogo
+      ons-col
+  .m10
+    ons-row
+      ons-col
+      +buttonMain(1)
+      +buttonMain(2)
+      +buttonMain(3)
+      ons-col
+    ons-row
+      ons-col
+      +buttonMain(4)
+      +buttonMain(5)
+      +buttonMain(6)
+      ons-col
+    ons-row
+      ons-col
+      +buttonMain(7)
+      +buttonMain(8)
+      +buttonMain(9)
+      ons-col
+    ons-row
+      ons-col
+      +buttonMain(10)
+      ons-col
+      ons-col
+      ons-col

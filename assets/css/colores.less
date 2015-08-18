@@ -1,0 +1,48 @@
+/** ----- colores ----*/
+.menuColors(@thecolor){
+  border-right: 4px solid @thecolor;
+  ons-icon{background:@thecolor; }
+}
+.allColors(@thecolor){
+  ons-toolbar{background: @thecolor;}
+  .navigation-bar__title, .toolbar-button{color: @w}
+  .mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label{ color:@thecolor;}
+  .mdl-textfield__label:after{background-color: @thecolor;}
+  .mdl-data-table th{color: @thecolor;}
+  .mdl-button--colored{background: @thecolor;color: @w;}
+  .titulo{border-left-color: @thecolor;}
+  .label{color: @thecolor;}
+  hr{border-color: @thecolor;}
+  .pageAction{background: rgba(0,0,0,0.5); button{background: @thecolor; color: @w;}}
+  .dialog {
+    background: @thecolor;
+    .mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label{ color:@b;}
+    .mdl-button--colored{background: @b;color: @w;}
+
+    .mdl-textfield__label:after{background-color: @b;}
+    .label{color: @gray;}
+  }
+}
+
+
+/* -- menu --*/
+ons-list-item.requerimientos{ .menuColors(@requerimientos); }
+ons-list-item.proveedor{ .menuColors(@proveedor); }
+ons-list-item.transformacion{ .menuColors(@transformacion); }
+ons-list-item.baja{ .menuColors(@baja); }
+ons-list-item.inventario{ .menuColors(@inventario); }
+ons-list-item.relacion{ .menuColors(@relacion); }
+ons-list-item.catalogo{ .menuColors(@catalogo); }
+ons-list-item.inspeccion{ .menuColors(@inspeccion); }
+ons-list-item.lista{ .menuColors(@lista); }
+
+/* -- page --*/
+.requerimientos{.allColors(@requerimientos);}
+.proveedor{.allColors(@proveedor);}
+.transformacion{.allColors(@transformacion);}
+.baja{ .allColors(@baja); }
+.relacion{ .allColors(@relacion); }
+.inventario{ .allColors(@inventario); }
+.inspeccion{ .allColors(@inspeccion); }
+.lista{ .allColors(@lista); }
+.catalogo, .detalleCatalogo{ .allColors(@catalogo); }

@@ -1,0 +1,29 @@
+
+<!--META TAGS-->
+<!-- Sitio-->
+<ons-list ng-controller="ListaSitiosController" class="selectFromList">
+  <ons-list-header class="filtroHeader">
+    <ons-row>
+      <ons-col>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input type="text" id="queryFilter" ng-model="query" class="mdl-textfield__input"/>
+          <label for="queryFilter" class="mdl-textfield__label">Buscar</label>
+        </div>
+      </ons-col>
+      <ons-col></ons-col>
+    </ons-row>
+  </ons-list-header>
+  <ons-list-item ng-animate="'zoom'" ng-show="failed">Ocurrió un error al cargar los sitios.</ons-list-item>
+  <ons-list-item ng-repeat="item in sitios | orderBy:'Clave' | filter: query" modifier="tappable" class="onslistSitios">
+    <div ng-click="asignSelection(item.Clave);">
+      <ons-row class="miniInfo">
+        <ons-col><strong><span>{{item.Clave}}</span></strong></ons-col>
+        <ons-col>ID: <span>{{item.ID}}</span></ons-col>
+        <ons-col>Tipo: <span>{{item.Tipo}}</span></ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>{{item.Sitio}}</ons-col>
+      </ons-row>
+    </div>
+  </ons-list-item>
+</ons-list>

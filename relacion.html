@@ -1,0 +1,261 @@
+
+<!--META TAGS-->
+<!-- Sitio-->
+<ons-navigator title="Elegir opción" var="autocomplete">
+  <ons-page class="relacion">
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="menu.toggleMenu()">
+          <ons-icon icon="ion-navicon"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Relación de envío y recepción</div>
+      <div class="right">
+        <ons-toolbar-button ng-click="menuRight.toggleMenu()">
+          <ons-icon icon="ion-gear-a"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+    <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
+      <button type="button" onclick="alert('Realiza inventario');" class="mdl-button mdl-js-button">
+        <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar
+      </button>
+    </ons-bottom-toolbar>
+    <form action="#">
+      <ons-row>
+        <div class="titulo">
+          <ons-icon icon="ion-ios-arrow-right"></ons-icon> Información
+        </div>
+      </ons-row>
+      <div class="m10">
+        <ons-row>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="folio" name="folio" class="mdl-textfield__input"/>
+              <label for="folio" class="mdl-textfield__label">Folio</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="date" id="fecha" name="fecha" class="mdl-textfield__input"/>
+              <label for="fecha" class="mdl-textfield__label">Fecha</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="noRemision" name="noRemision" class="mdl-textfield__input"/>
+              <label for="noRemision" class="mdl-textfield__label">Nº de remisión SCOPE</label>
+            </div>
+          </ons-col>
+        </ons-row>
+        <ons-row>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
+              <input type="text" id="sitioDestion" name="sitioDestion" class="mdl-textfield__input"/>
+              <label for="sitioDestion" class="mdl-textfield__label"><span>Sitio destino</span> </label>
+              <button type="button" onClick="openMenuSitios('sitioDestion')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                <ons-icon icon="ion-android-list"></ons-icon>
+              </button>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
+              <input type="text" id="sitioOrigen" name="sitioOrigen" class="mdl-textfield__input"/>
+              <label for="sitioOrigen" class="mdl-textfield__label"><span>Sitio orígen</span> </label>
+              <button type="button" onClick="openMenuSitios('sitioOrigen')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                <ons-icon icon="ion-android-list"></ons-icon>
+              </button>
+            </div>
+          </ons-col>
+          <ons-col></ons-col>
+        </ons-row>
+        <hr/>
+      </div>
+      <ons-row>
+        <div class="titulo">
+          <ons-icon icon="ion-ios-arrow-right"></ons-icon> Datos
+        </div>
+      </ons-row>
+      <ons-row>
+        <p class="label">Envío</p>
+      </ons-row>
+      <div class="m10">
+        <ons-row>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="date" id="fechaEmbarque" name="fechaEmbarque" class="mdl-textfield__input"/>
+              <label for="fechaEmbarque" class="mdl-textfield__label">Fecha de embarque</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="date" id="fechaArribo" name="fechaArribo" class="mdl-textfield__input"/>
+              <label for="fechaArribo" class="mdl-textfield__label">Fecha estimada de arribo</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="repsonsable" name="repsonsable" class="mdl-textfield__input"/>
+              <label for="repsonsable" class="mdl-textfield__label">Responsable</label>
+            </div>
+          </ons-col>
+        </ons-row>
+        <hr/>
+      </div>
+      <ons-row>
+        <p class="label">Transporte</p>
+      </ons-row>
+      <div class="m10">
+        <ons-row>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="compania" name="compania" class="mdl-textfield__input"/>
+              <label for="compania" class="mdl-textfield__label">Compañía</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="placaVehiculo" name="placaVehiculo" class="mdl-textfield__input"/>
+              <label for="placaVehiculo" class="mdl-textfield__label">Placa del vehículo</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="placaPlataforma" name="placaPlataforma" class="mdl-textfield__input"/>
+              <label for="placaPlataforma" class="mdl-textfield__label">Placa de plataforma</label>
+            </div>
+          </ons-col>
+        </ons-row>
+        <hr/>
+      </div>
+      <ons-row>
+        <p class="label">Responsivas</p>
+      </ons-row>
+      <div class="m10">
+        <ons-row class="text-center">
+          <ons-col>
+            <p>Por este medio hago constar que recibo en buen estado el 100% del material incluido en la lista y me comprometo a devolver la totalidad del mismo en las mismas condiciones en las que se ha recibido.</p>
+          </ons-col>
+          <ons-col>
+            <ul class="list">
+              <li class="list__item">Superintendente / Residente
+                <label class="switch switch--list-item">
+                  <input type="checkbox" class="switch__input"/>
+                  <div class="switch__toggle"></div>
+                </label>
+              </li>
+              <li class="list__item">Administrador de andamio
+                <label class="switch switch--list-item">
+                  <input type="checkbox" class="switch__input"/>
+                  <div class="switch__toggle"></div>
+                </label>
+              </li>
+              <li class="list__item">Contratista / Subcontratista
+                <label class="switch switch--list-item">
+                  <input type="checkbox" class="switch__input"/>
+                  <div class="switch__toggle"></div>
+                </label>
+              </li>
+            </ul>
+          </ons-col>
+        </ons-row>
+      </div>
+      <hr/>
+      <ons-row>
+        <div class="titulo">
+          <ons-icon icon="ion-ios-arrow-right"></ons-icon> Relaciones
+        </div>
+      </ons-row>
+      <div class="m10">
+        <ons-row>
+          <table class="mdl-data-table mdl-js-data-table">
+            <thead>
+              <tr>
+                <th>Clave</th>
+                <th>Descripción</th>
+                <th>Cantidad enviada</th>
+                <th>Cantidad recibida</th>
+                <th>Diferencia</th>
+                <th ng-controller="AddItemDialogController" class="addButton">
+                  <button type="button" ng-click="show('addItem.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <ons-icon icon="ion-plus-round"></ons-icon>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Descripción</td>
+                <td>12</td>
+                <td>5</td>
+                <td>7</td>
+                <td><a href="#">
+                    <ons-icon icon="ion-close-round"></ons-icon></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </ons-row>
+      </div>
+    </form>
+  </ons-page>
+</ons-navigator>
+<ons-template id="addItem.html">
+  <ons-dialog var="addItemDialog" cancelable="cancelable">
+    <ons-toolbar inline="inline">
+      <div class="center">Añadir nuevo</div>
+    </ons-toolbar>
+    <div class="m10 relacion">
+      <p>Captura o selección de imagen</p>
+      <ons-row>
+        <ons-col class="text-center">
+          <button type="button" ng-click="alert('Tomar foto');" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <ons-icon icon="ion-camera"></ons-icon>
+          </button>
+        </ons-col>
+      </ons-row>
+      <p>Datos</p>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="clave" name="clave" class="mdl-textfield__input"/>
+            <label for="clave" class="mdl-textfield__label">Clave</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="descripcion" name="descripcion" class="mdl-textfield__input"/>
+            <label for="descripcion" class="mdl-textfield__label">Descripción</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="cantidadEnviada" name="cantidadEnviada" class="mdl-textfield__input"/>
+            <label for="cantidadEnviada" class="mdl-textfield__label">Cantidad enviada</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="cantidadRecibida" name="cantidadRecibida" class="mdl-textfield__input"/>
+            <label for="cantidadRecibida" class="mdl-textfield__label">Cantidad recibida</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="diferencia" name="diferencia" class="mdl-textfield__input"/>
+            <label for="diferencia" class="mdl-textfield__label">Diferencia</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col class="text-center">
+          <button type="button" ng-click="addItemDialog.hide()" class="mdl-button mdl-js-button mdl-button--colored">
+            <ons-icon icon="ion-plus-round"></ons-icon> Añadir elemento
+          </button>
+        </ons-col>
+      </ons-row>
+    </div>
+  </ons-dialog>
+</ons-template>

@@ -1,0 +1,123 @@
+include _config.jade
+include _mixins.jade
+ons-navigator(title="Elegir opción", var="autocomplete")
+  ons-page.relacion
+    +ons-toolbar('Relación de envío y recepción')
+    ons-bottom-toolbar(modifier="transparent").text-right.pageAction
+      button(type="button", onclick="alert('Realiza inventario');").mdl-button.mdl-js-button
+        ons-icon(icon="ion-ios-paperplane")
+        |  Guardar
+  
+  
+    form(action="#")
+      
+      ons-row
+        .titulo
+           ons-icon(icon="ion-ios-arrow-right")
+           |  Información
+      .m10
+        ons-row
+          ons-col: +input('folio', 'Folio')
+          ons-col: +input('fecha', 'Fecha', 'date')
+          ons-col: +input('noRemision', 'Nº de remisión SCOPE')
+        ons-row
+          ons-col: +input('sitioDestion', 'Sitio destino', 'text', 'db_sitios.html')
+          ons-col: +input('sitioOrigen', 'Sitio orígen', 'text', 'db_sitios.html')
+          ons-col
+        hr
+      ons-row
+        .titulo
+          ons-icon(icon="ion-ios-arrow-right")
+          |  Datos
+      ons-row
+        p.label Envío
+      .m10
+        ons-row
+          ons-col: +input('fechaEmbarque', 'Fecha de embarque', 'date')
+          ons-col: +input('fechaArribo', 'Fecha estimada de arribo', 'date')
+          ons-col: +input('repsonsable', 'Responsable')
+        hr
+      ons-row
+        p.label Transporte
+      .m10
+        ons-row
+          ons-col: +input('compania', 'Compañía')
+          ons-col: +input('placaVehiculo', 'Placa del vehículo')
+          ons-col: +input('placaPlataforma', 'Placa de plataforma')
+        hr
+      ons-row
+        p.label Responsivas
+      .m10
+        ons-row.text-center
+          ons-col
+            p Por este medio hago constar que recibo en buen estado el 100% del material incluido en la lista y me comprometo a devolver la totalidad del mismo en las mismas condiciones en las que se ha recibido.
+          ons-col
+            ul.list
+              li.list__item
+                | Superintendente / Residente
+                label.switch.switch--list-item
+                  input(type="checkbox").switch__input
+                  .switch__toggle
+              li.list__item
+                | Administrador de andamio
+                label.switch.switch--list-item
+                  input(type="checkbox").switch__input
+                  .switch__toggle
+              li.list__item
+                | Contratista / Subcontratista
+                label.switch.switch--list-item
+                  input(type="checkbox").switch__input
+                  .switch__toggle
+  
+      hr   
+      ons-row
+        .titulo
+          ons-icon(icon="ion-ios-arrow-right")
+          |  Relaciones
+      .m10
+        ons-row
+          table.mdl-data-table.mdl-js-data-table
+            thead
+              tr
+                th Clave
+                th Descripción
+                th Cantidad enviada
+                th Cantidad recibida
+                th Diferencia
+                th.addButton(ng-controller="AddItemDialogController")
+                  button(type="button", ng-click="show('addItem.html')").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+                    ons-icon(icon="ion-plus-round")
+            tbody
+              tr
+                td 1
+                td Descripción
+                td 12
+                td 5
+                td 7
+                td: a(href="#"): ons-icon(icon="ion-close-round")
+                
+                
+              
+ons-template(id="addItem.html")
+  ons-dialog(var="addItemDialog" cancelable)
+    ons-toolbar(inline)
+      .center Añadir nuevo
+    .m10.relacion
+      p Captura o selección de imagen
+      ons-row
+        ons-col.text-center
+          button(type="button", ng-click="alert('Tomar foto');").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+            ons-icon(icon="ion-camera")
+      p Datos
+      ons-row
+        ons-col: +input('clave', 'Clave')
+        ons-col: +input('descripcion', 'Descripción')
+      ons-row
+        ons-col: +input('cantidadEnviada', 'Cantidad enviada')
+        ons-col: +input('cantidadRecibida', 'Cantidad recibida')
+        ons-col: +input('diferencia', 'Diferencia')
+      ons-row
+        ons-col.text-center
+          button(type="button", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
+            ons-icon(icon="ion-plus-round")
+            |  Añadir elemento

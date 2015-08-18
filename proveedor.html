@@ -1,0 +1,142 @@
+
+<!--META TAGS-->
+<!-- Sitio-->
+<ons-page class="proveedor">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ng-click="menu.toggleMenu()">
+        <ons-icon icon="ion-navicon"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">Proveedor</div>
+    <div class="right">
+      <ons-toolbar-button ng-click="menuRight.toggleMenu()">
+        <ons-icon icon="ion-gear-a"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
+    <button type="button" onclick="alert('Enviar requerimiento');" class="mdl-button mdl-js-button">
+      <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar proveedor
+    </button>
+  </ons-bottom-toolbar>
+  <form action="#">
+    <ons-row>
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Información
+      </div>
+    </ons-row>
+    <div class="m10">
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="remision" name="remision" class="mdl-textfield__input"/>
+            <label for="remision" class="mdl-textfield__label">No. SCOPE</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="date" id="fecha" name="fecha" class="mdl-textfield__input"/>
+            <label for="fecha" class="mdl-textfield__label">Fecha</label>
+          </div>
+        </ons-col>
+        <ons-col></ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="nombreProveedor" name="nombreProveedor" class="mdl-textfield__input"/>
+            <label for="nombreProveedor" class="mdl-textfield__label">Nombre del proveedor</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="claveProveedor" name="claveProveedor" class="mdl-textfield__input"/>
+            <label for="claveProveedor" class="mdl-textfield__label">Clave del proveedor</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="contacto" name="contacto" class="mdl-textfield__input"/>
+            <label for="contacto" class="mdl-textfield__label">Contacto</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="telefono" name="telefono" class="mdl-textfield__input"/>
+            <label for="telefono" class="mdl-textfield__label">Teléfono</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="comentariosProveedor" name="comentariosProveedor" class="mdl-textfield__input"/>
+            <label for="comentariosProveedor" class="mdl-textfield__label">Comentarios</label>
+          </div>
+        </ons-col>
+      </ons-row>
+    </div>
+    <ons-row>
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Equipo
+      </div>
+    </ons-row>
+    <div class="m10">
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="nombreEquipo" name="nombreEquipo" class="mdl-textfield__input"/>
+            <label for="nombreEquipo" class="mdl-textfield__label">Nombre del equipo</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="claveEquipo" name="claveEquipo" class="mdl-textfield__input"/>
+            <label for="claveEquipo" class="mdl-textfield__label">Clave del equipo</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="familioEquipo" name="familioEquipo" class="mdl-textfield__input"/>
+            <label for="familioEquipo" class="mdl-textfield__label">Familia del equipo</label>
+          </div>
+        </ons-col>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="proveedor" name="proveedor" class="mdl-textfield__input"/>
+            <label for="proveedor" class="mdl-textfield__label">Proveedor</label>
+          </div>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input type="text" id="comentariosEquipo" name="comentariosEquipo" class="mdl-textfield__input"/>
+            <label for="comentariosEquipo" class="mdl-textfield__label">Comentarios</label>
+          </div>
+        </ons-col>
+      </ons-row>
+    </div>
+    <ons-row>
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Foto / diagrama
+      </div>
+    </ons-row>
+    <ons-row>
+      <p class="label">Capturar o elegir imagen</p>
+    </ons-row>
+    <div class="m10">
+      <ons-row>
+        <ons-col class="text-center">
+          <button type="button" ng-click="alert('Tomar foto');" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+            <ons-icon icon="ion-camera"></ons-icon>
+          </button>
+        </ons-col>
+      </ons-row>
+      <ons-row>
+        <ons-col class="text-center"><img src="http://placehold.it/400x400" alt=""/></ons-col>
+      </ons-row>
+    </div>
+  </form>
+</ons-page>

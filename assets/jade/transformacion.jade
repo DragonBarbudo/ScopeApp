@@ -1,0 +1,79 @@
+include _config.jade
+include _mixins.jade
+ons-navigator(title="Elegir opción", var="autocomplete")
+  ons-page.transformacion
+    +ons-toolbar('Transformación')
+    ons-bottom-toolbar(modifier="transparent").text-right.pageAction
+      button(type="button", onclick="alert('Realizar transformación');").mdl-button.mdl-js-button
+        ons-icon(icon="ion-ios-paperplane")
+        |  Guardar
+  
+  
+    form(action="#")
+      
+      ons-row
+        .titulo
+           ons-icon(icon="ion-ios-arrow-right")
+           |  Información
+      .m10
+        ons-row
+          ons-col: +input('folioSitio', 'Folio sitio')
+          ons-col: +input('folioScope', 'Folio SCOPE')
+          ons-col: +input('fecha', 'Fecha', 'date')
+        ons-row
+          ons-col: +input('sitio', 'Sitio', 'text', 'db_sitios.html')
+          ons-col
+          ons-col
+        hr
+      ons-row
+        .titulo
+           ons-icon(icon="ion-ios-arrow-right")
+           |  Transformaciones
+      .m10
+        ons-row
+          table.mdl-data-table.mdl-js-data-table
+            thead
+              tr
+                th(colspan="2").text-center Producto origen
+                th(colspan="3").text-center Producto transformado
+                th
+              tr
+                th Cantidad
+                th Clave
+                th Cantidad
+                th Clave
+                th Descripción
+                th.addButton(ng-controller="AddItemDialogController")
+                  button(type="button", ng-click="show('addItem.html')").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+                    ons-icon(icon="ion-plus-round")
+            tbody
+              tr
+                td 1
+                td 1023
+                td 1
+                td 19385
+                td  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis incidunt vel consequuntur.
+                td: a(href="#"): ons-icon(icon="ion-close-round")
+  
+
+
+ons-template(id="addItem.html")
+  ons-dialog(var="addItemDialog" cancelable)
+    ons-toolbar(inline)
+      .center Añadir nuevo
+    .m10.transformacion
+      p Producto origen
+      ons-row
+        ons-col: +input('cantidad', 'Cantidad')
+        ons-col: +input('clave', 'Clave')
+      p Producto transformado
+      ons-row
+        ons-col: +input('cantidadTransformado', 'Cantidad')
+        ons-col: +input('claveTransformado', 'Clave')
+      ons-row
+        ons-col: +input('comentarioTransformado', 'Comentario') 
+      ons-row
+        ons-col.text-center
+          button(type="button", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
+            ons-icon(icon="ion-plus-round")
+            |  Añadir elemento

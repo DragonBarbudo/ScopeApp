@@ -1,0 +1,369 @@
+/* libraries */
+@import 'csslib/reset';
+@import 'csslib/lesshat';
+@import 'csslib/grid';
+@import 'csslib/mediaqueries';
+@import 'csslib/customs';
+@import 'csslib/onsenui';
+@import 'csslib/onsen-blue-theme';
+@import 'csslib/font_awesome/css/font-awesome.min.css';
+@import 'csslib/ionicons/css/ionicons.min.css';
+@import 'csslib/material';
+@import 'csslib/roboto';
+@import 'colores';
+// grid
+@fw: 960px;
+//	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>
+// Fonts
+.font(@we:300){ //400
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: @we;
+}
+.font2(@we:400){
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-weight: @we;
+}
+
+//	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>
+// Colors
+@b: #333; 		//Black
+@w: #fff;		//White
+@gray : #ddd; //666
+@requerimientos: #57a959;
+@proveedor: #31bda4;
+@transformacion: #9DB2BF;
+@catalogo: #01A9DB;
+@baja: #DE1852;
+@inventario: #3782d7;
+@relacion: #5075fc;
+@inspeccion: #953A8D;
+@colorscope: #37B636;
+@lista : #666;
+// PALLETE ALTERNATIVE
+@requerimientos: #FC4174;
+@proveedor: #F57225;
+@transformacion: #7FCE52;
+@catalogo: #83729e;
+@baja: #2699F1;
+@inventario: #4DCDFE;
+@relacion: #63BA97;
+@inspeccion: #953A8D;
+
+
+
+
+//	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>
+//classes and styles
+.container{
+  width: @fw;
+  margin: 0 auto;
+  .clearfix;
+}
+.t{outline: 1px solid #eee;}
+.m10{margin: 10px;}
+.text-right{text-align: right;}
+.text-center{text-align: center;}
+//	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>
+//	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>	>
+
+body{
+  .font;
+  color: @w;
+}
+
+.hrcolors{
+  position: fixed;
+  left:0;
+  width: 100%;
+  div{
+    width: 100%/8;
+    float: left;
+
+    &:nth-child(1){background: @requerimientos;}
+    &:nth-child(2){background: @proveedor;}
+    &:nth-child(3){background: @transformacion;}
+    &:nth-child(4){background: @baja;}
+    &:nth-child(5){background: @inventario;}
+    &:nth-child(6){background: @relacion;}
+    &:nth-child(7){background: @inspeccion;}
+    &:nth-child(8){background: @catalogo;}
+  }
+  &.top{top: 0; height: 2px; div{height: 2px;}}
+  &.bottom{bottom: 0; height: 4px; div{height: 4px;}}
+}
+
+
+.navigation-bar__title{
+  .font;
+  font-weight: bold !important;
+  text-shadow:0 1px 1px @b;
+  font-size:1.4em;
+}
+input{
+  .font;
+  &[type="date"]{.text-right;   padding: 1.5px 0 !important; }
+}
+.mdl-data-table{
+  .font;
+  margin: 0 auto;
+  background-color:transparent;
+  border: none;
+  font-size: 0.9em;
+  thead{
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid @gray;
+    tr{
+      th{
+        font-size: 1em; .font2;
+        line-height: auto;
+        height: auto;
+        padding: 10px;
+        text-align: left;
+        &.addButton{
+          text-align: right;
+          button{
+            margin: -50px -50px 0 0;
+          }
+        }
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        color: @w;
+      }
+      &:hover{
+        background: rgba(0,0,0,0.2);
+      }
+    }
+  }
+}
+
+.mdl-textfield{width: 98%;}
+
+.navigation-bar__title{font-weight: 400;}
+
+.mdl-data-table th.text-center{text-align: center;}
+.titulo{
+  padding: 10px 20px 10px 20px;
+  border-left: 16px solid @gray;
+  color: @w;
+  background: rgba(0,0,0,0.2);
+  margin: 10px 0;
+}
+.label{
+  background: rgba(0,0,0,0.2);
+  color: @gray;
+  font-size: 0.9em;
+  .font;
+  padding: 5px 20px;
+  border-left: 6px solid @gray;
+}
+
+.pageAction{
+  padding: 0 10px;
+  button{margin: 6px 0; height: 28px; line-height: 28px}
+}
+
+
+ons-sliding-menu{
+  .list__item{
+    padding-left: 50px;
+    position: relative;
+    font-size: 0.9em;
+    color: @gray;
+    ons-icon{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 100%;
+      text-align: center;
+      line-height: 44px;
+      color: @w;
+      .box-shadow(-4px 0 3px rgba(0,0,0,0.1) inset);
+    }
+  }
+
+}
+.button{position: relative; left: auto;}
+
+.catalogo{
+  .famNombre{ color:@w; padding: 2px 10px; margin: 20px 0 0 0 ; background: @catalogo; font-size:1.2em; }
+  ons-carousel{
+    height: 220px;
+    width: 100%;
+    margin: 0px 0;
+    ons-carousel-item{
+      position: relative;
+      width: 240px;
+      .nombre{
+        position: absolute;
+        display: block;
+        width: 100%;
+        bottom: 10px; left: 0;
+        .box-sizing(border-box);
+        text-align: center;
+        background: fade(@catalogo, 50%);
+        color: @w;
+        margin: 10px;
+        .clave{
+          font-weight: bold;
+          font-size: 0.7em;
+          background: rgba(0,0,0,0.5);
+          padding: 2px;
+        }
+        .equipo{
+          font-size: 0.8em;
+          padding: 5px 20px;
+        }
+      }
+      button{
+        position: absolute; right: 5px; top: 5px;
+      }
+      .image{
+        width: 240px; height: 200px;
+        overflow:   hidden;
+      }
+      &:nth-child(odd){
+        .nombre{background: fade(@catalogo/1.2, 50%); }
+      }
+    }
+  }
+}
+
+
+
+
+.inicio{
+
+  ons-row{
+    ons-col{
+     padding: 20px;
+     text-align:center;
+
+      button{
+
+      }
+      span{
+        display: block;
+        margin: 10px;
+        color:@gray;
+        font-size: 0.8em;
+
+      }
+    }
+  }
+}
+
+.mainLogo{
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  max-height: 91px;
+}
+.secondLogo{
+  width: 100%;
+  max-width: 100px;
+  max-height: 45px;
+  margin: 20px auto;
+}
+
+.syncDBBtn{
+  background: @colorscope !important;
+  color: @w;
+  margin: 40px 0;
+}
+
+
+
+.credits{
+  margin: 40px 10px;
+  color:@gray/1.6;
+  p{color:@gray/1.6; font-size: 0.8em;}
+}
+
+
+
+/******* INVERTED ********/
+.page__background{
+  background: @b;
+}
+.list{background: transparent;}
+
+.onsen-sliding-menu__menu .page__content{
+  background: rgba(0,0,0,0.2) !important;
+}
+.mdl-textfield__label{
+  color: rgba(255, 255, 255, 0.9);
+}
+.mdl-textfield__input{
+ color: @w;
+}
+.dialog{
+  background: @b;
+  ons-toolbar{
+    background: @b/1.2;
+    .navigation-bar__title{
+      color:@w;
+    }
+  }
+  p{
+    border-left: 2px solid @gray;
+    padding: 5px;
+  }
+}
+p{
+  color:@gray;
+}
+
+
+
+
+.toolbar-button, .toolbar-button--outline, .toolbar-button--quiet{color: @w;}
+
+.inputDeployer{
+  button{
+    right: 10%;
+    ons-icon{
+      font-size:0.9em;
+      line-height: 0em;
+    }
+  }
+}
+
+.miniInfo{
+  font-size: 0.8em;
+  span{
+      color: @colorscope;
+  }
+}
+
+.selectFromList{
+  padding-top: 70px;
+  @thecolor: @colorscope;
+  .label{color: @thecolor;}
+  .mdl-textfield__label:after{background-color: @thecolor;}
+  .mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label{ color:@thecolor;}
+
+}
+.onslistSitios{
+  padding-left: 10px !important;
+  line-height: 30px !important;
+}
+.filtroHeader{
+  position: fixed;
+  left: 0;top: 0;
+  width: 100%;
+  background: @b;
+  z-index: 999;
+}
+
+
+.dialog-mask{
+  display: none !important;
+}
+.dialog{
+
+}

@@ -1,0 +1,98 @@
+/////////////////
+// Semantic.gs // for LESS: http://lesscss.org/
+/////////////////
+
+// Defaults which you can freely override
+@column-width: 60;
+@gutter-width: 20;
+@columns: 12;
+
+// Utility variable — you should never need to modify this
+@gridsystem-width: (@column-width*@columns) + (@gutter-width*@columns) * 1px;
+
+// Set @total-width to 100% for a fluid layout
+@total-width: @gridsystem-width;
+
+// Uncomment these two lines and the star-hack width/margin lines below to enable sub-pixel fix for IE6 & 7. See http://tylertate.com/blog/2012/01/05/subpixel-rounding.html
+// @min-width: 960;
+// @correction: 0.5 / @min-width * 100 * 1%;
+
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix() {
+	*zoom:1;
+	
+	&:before,
+	&:after {
+	    content:"";
+	    display:table;
+	}
+	&:after {
+	    clear:both;
+	}
+}
+
+
+//////////
+// GRID //
+//////////
+
+body {
+	width: 100%;
+	.clearfix;
+}
+
+.row(@columns:@columns) {
+	display: block;
+	width: @total-width*((@gutter-width + @gridsystem-width)/@gridsystem-width);
+	margin: 0 @total-width*(((@gutter-width*.5)/@gridsystem-width)*-1);
+	// *width: @total-width*((@gutter-width + @gridsystem-width)/@gridsystem-width)-@correction;
+	// *margin: 0 @total-width*(((@gutter-width*.5)/@gridsystem-width)*-1)-@correction;
+	.clearfix;
+}
+.column(@x,@columns:@columns) {
+	display: inline;
+	float: left;
+	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+	margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+	// *width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width)-@correction;
+	// *margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width)-@correction;	
+	
+}
+.push(@offset:1) {
+	margin-left:	@total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+.pull(@offset:1) {
+	margin-right:	@total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+
+
+
+
+.c1{.column(1);}
+.c2{.column(2);}
+.c3{.column(3);}
+.c4{.column(4);}
+.c5{.column(5);}
+.c6{.column(6);}
+.c7{.column(7);}
+.c8{.column(8);}
+.c9{.column(9);}
+.c10{.column(10);}
+.c11{.column(11);}
+.c12{.column(12);}
+.c13{.column(13);}
+.c14{.column(14);}
+.p1{.push(1);}
+.p2{.push(2);}
+.p3{.push(3);}
+.p4{.push(4);}
+.p5{.push(5);}
+.p6{.push(6);}
+.p7{.push(7);}
+.p8{.push(8);}
+.p9{.push(9);}
+.p10{.push(10);}
+.p11{.push(11);}
+.p12{.push(12);}
+.p13{.push(13);}
+.p14{.push(14);}
