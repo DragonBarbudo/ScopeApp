@@ -3,21 +3,19 @@ include _mixins.jade
 
 ons-page.proveedor
   +ons-toolbar('Proveedor')
-  ons-bottom-toolbar(modifier="transparent").text-right.pageAction
-    button(type="button", onclick="alert('Enviar requerimiento');").mdl-button.mdl-js-button
-      ons-icon(icon="ion-ios-paperplane")
-      |  Guardar proveedor
-
-
-  form(action="#")
-    
+  form(action="#", ng-controller="ProveedorCtrl")
+    ons-bottom-toolbar(modifier="transparent").text-right.pageAction
+      button(type="button", ng-click="save()").mdl-button.mdl-js-button
+        ons-icon(icon="ion-ios-paperplane")
+        |  Guardar
+      
     ons-row
       .titulo
          ons-icon(icon="ion-ios-arrow-right")
          |  Información
     .m10
       ons-row
-        ons-col: +input('remision', 'No. SCOPE')
+        ons-col: +input('remision', 'No.  de requerimiento SCOPE')
         ons-col: +input('fecha', 'Fecha', 'date')
         ons-col
       ons-row
@@ -35,7 +33,7 @@ ons-page.proveedor
       ons-row
         ons-col: +input('nombreEquipo', 'Nombre del equipo')
         ons-col: +input('claveEquipo', 'Clave del equipo')
-        ons-col: +input('familioEquipo', 'Familia del equipo')
+        ons-col: +input('familiaEquipo', 'Familia del equipo')
         ons-col: +input('proveedor', 'Proveedor')
       ons-row
         ons-col: +input('comentariosEquipo', 'Comentarios')
@@ -47,11 +45,9 @@ ons-page.proveedor
     .m10
       ons-row
         ons-col.text-center
-          button(type="button", ng-click="alert('Tomar foto');").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+          button(type="button", ng-click="camera()").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
             ons-icon(icon="ion-camera")
-
       ons-row
         ons-col.text-center
-          img(src="http://placehold.it/400x400", alt="")
+          img(ng-src="", alt="")#picture
           
-

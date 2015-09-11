@@ -60,4 +60,53 @@ mixin navigationFooter(activePage, nav)
 mixin scripts()
   - each sc in javascripts
     script(src="assets/js/#{sc}")
-    
+
+
+
+      
+
+mixin sliding-menu
+  ons-sliding-menu(main-page="fullContainer.html", menu-page="menuRight.html", side="right", max-slide-distance="450px", var="menuRight", swipe-target-width="200px", swipeable="false")
+  ons-template(id="fullContainer.html")
+    ons-page
+        ons-sliding-menu(main-page="inicio.html", menu-page="menu.html", side="left", max-slide-distance="350px", var="menu", swipe-target-width="200px")
+
+
+
+mixin ons-toolbar(pageTitle)
+  ons-toolbar
+    .left
+      ons-toolbar-button(ng-click="menu.toggleMenu()")
+        ons-icon(icon="ion-navicon")
+    .center=pageTitle
+    .right
+      ons-toolbar-button(ng-click="menuRight.setMenuPage('menuRight.html'); menuRight.toggleMenu()")
+        ons-icon(icon="ion-gear-a")
+
+mixin input(id, label, type, onClick)
+  - if(!type)
+    - type='text';
+  - if(onClick)
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.inputDeployer
+      input(type=type, id=id, name=id, ng-model="campos.#{id}").mdl-textfield__input
+      label(for=id).mdl-textfield__label
+        span=label
+        |  
+      button(type="button", onClick="openMenuSitios('#{id}', '#{onClick}')").mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-button--colored
+        ons-icon(icon="ion-android-list")
+  - else
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      input(type=type, id=id, name=id, ng-model="campos.#{id}").mdl-textfield__input
+      label(for=id).mdl-textfield__label=label
+
+
+mixin hrcolors(cl)
+  .hrcolors(class=cl)
+    div
+    div
+    div
+    div
+    div
+    div
+    div
+    div

@@ -15496,10 +15496,10 @@ ons-list-item.proveedor ons-icon {
   background: #f57225;
 }
 ons-list-item.transformacion {
-  border-right: 4px solid #7fce52;
+  border-right: 4px solid #65a542;
 }
 ons-list-item.transformacion ons-icon {
-  background: #7fce52;
+  background: #65a542;
 }
 ons-list-item.baja {
   border-right: 4px solid #2699f1;
@@ -15508,10 +15508,10 @@ ons-list-item.baja ons-icon {
   background: #2699f1;
 }
 ons-list-item.inventario {
-  border-right: 4px solid #4dcdfe;
+  border-right: 4px solid #3da3cb;
 }
 ons-list-item.inventario ons-icon {
-  background: #4dcdfe;
+  background: #3da3cb;
 }
 ons-list-item.relacion {
   border-right: 4px solid #63ba97;
@@ -15537,7 +15537,71 @@ ons-list-item.lista {
 ons-list-item.lista ons-icon {
   background: #666666;
 }
+ons-list-item.datos {
+  border-right: 4px solid #999999;
+}
+ons-list-item.datos ons-icon {
+  background: #999999;
+}
 /* -- page --*/
+.datos ons-toolbar {
+  background: #999999;
+}
+.datos .navigation-bar__title,
+.datos .toolbar-button {
+  color: #ffffff;
+}
+.datos .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
+.datos .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
+  color: #999999;
+}
+.datos .mdl-textfield__label:after {
+  background-color: #999999;
+}
+.datos .mdl-data-table th {
+  color: #999999;
+}
+.datos .mdl-button--colored {
+  background: #999999;
+  color: #ffffff;
+}
+.datos .titulo {
+  border-left-color: #999999;
+}
+.datos .label {
+  color: #999999;
+}
+.datos hr {
+  border-color: #999999;
+}
+.datos .pageAction {
+  background: rgba(0, 0, 0, 0.5);
+}
+.datos .pageAction button {
+  background: #999999;
+  color: #ffffff;
+}
+.datos button.colorize {
+  background: #999999;
+  color: #ffffff;
+}
+.datos .dialog {
+  background: #999999;
+}
+.datos .dialog .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
+.datos .dialog .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
+  color: #333333;
+}
+.datos .dialog .mdl-button--colored {
+  background: #333333;
+  color: #ffffff;
+}
+.datos .dialog .mdl-textfield__label:after {
+  background-color: #333333;
+}
+.datos .dialog .label {
+  color: #dddddd;
+}
 .requerimientos ons-toolbar {
   background: #fc4174;
 }
@@ -15572,6 +15636,10 @@ ons-list-item.lista ons-icon {
   background: rgba(0, 0, 0, 0.5);
 }
 .requerimientos .pageAction button {
+  background: #fc4174;
+  color: #ffffff;
+}
+.requerimientos button.colorize {
   background: #fc4174;
   color: #ffffff;
 }
@@ -15629,6 +15697,10 @@ ons-list-item.lista ons-icon {
   background: #f57225;
   color: #ffffff;
 }
+.proveedor button.colorize {
+  background: #f57225;
+  color: #ffffff;
+}
 .proveedor .dialog {
   background: #f57225;
 }
@@ -15647,7 +15719,7 @@ ons-list-item.lista ons-icon {
   color: #dddddd;
 }
 .transformacion ons-toolbar {
-  background: #7fce52;
+  background: #65a542;
 }
 .transformacion .navigation-bar__title,
 .transformacion .toolbar-button {
@@ -15655,36 +15727,40 @@ ons-list-item.lista ons-icon {
 }
 .transformacion .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
 .transformacion .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
-  color: #7fce52;
+  color: #65a542;
 }
 .transformacion .mdl-textfield__label:after {
-  background-color: #7fce52;
+  background-color: #65a542;
 }
 .transformacion .mdl-data-table th {
-  color: #7fce52;
+  color: #65a542;
 }
 .transformacion .mdl-button--colored {
-  background: #7fce52;
+  background: #65a542;
   color: #ffffff;
 }
 .transformacion .titulo {
-  border-left-color: #7fce52;
+  border-left-color: #65a542;
 }
 .transformacion .label {
-  color: #7fce52;
+  color: #65a542;
 }
 .transformacion hr {
-  border-color: #7fce52;
+  border-color: #65a542;
 }
 .transformacion .pageAction {
   background: rgba(0, 0, 0, 0.5);
 }
 .transformacion .pageAction button {
-  background: #7fce52;
+  background: #65a542;
+  color: #ffffff;
+}
+.transformacion button.colorize {
+  background: #65a542;
   color: #ffffff;
 }
 .transformacion .dialog {
-  background: #7fce52;
+  background: #65a542;
 }
 .transformacion .dialog .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
 .transformacion .dialog .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
@@ -15734,6 +15810,10 @@ ons-list-item.lista ons-icon {
   background: rgba(0, 0, 0, 0.5);
 }
 .baja .pageAction button {
+  background: #2699f1;
+  color: #ffffff;
+}
+.baja button.colorize {
   background: #2699f1;
   color: #ffffff;
 }
@@ -15791,6 +15871,10 @@ ons-list-item.lista ons-icon {
   background: #63ba97;
   color: #ffffff;
 }
+.relacion button.colorize {
+  background: #63ba97;
+  color: #ffffff;
+}
 .relacion .dialog {
   background: #63ba97;
 }
@@ -15809,7 +15893,7 @@ ons-list-item.lista ons-icon {
   color: #dddddd;
 }
 .inventario ons-toolbar {
-  background: #4dcdfe;
+  background: #3da3cb;
 }
 .inventario .navigation-bar__title,
 .inventario .toolbar-button {
@@ -15817,36 +15901,40 @@ ons-list-item.lista ons-icon {
 }
 .inventario .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
 .inventario .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
-  color: #4dcdfe;
+  color: #3da3cb;
 }
 .inventario .mdl-textfield__label:after {
-  background-color: #4dcdfe;
+  background-color: #3da3cb;
 }
 .inventario .mdl-data-table th {
-  color: #4dcdfe;
+  color: #3da3cb;
 }
 .inventario .mdl-button--colored {
-  background: #4dcdfe;
+  background: #3da3cb;
   color: #ffffff;
 }
 .inventario .titulo {
-  border-left-color: #4dcdfe;
+  border-left-color: #3da3cb;
 }
 .inventario .label {
-  color: #4dcdfe;
+  color: #3da3cb;
 }
 .inventario hr {
-  border-color: #4dcdfe;
+  border-color: #3da3cb;
 }
 .inventario .pageAction {
   background: rgba(0, 0, 0, 0.5);
 }
 .inventario .pageAction button {
-  background: #4dcdfe;
+  background: #3da3cb;
+  color: #ffffff;
+}
+.inventario button.colorize {
+  background: #3da3cb;
   color: #ffffff;
 }
 .inventario .dialog {
-  background: #4dcdfe;
+  background: #3da3cb;
 }
 .inventario .dialog .mdl-textfield--floating-label.is-focused .mdl-textfield__label,
 .inventario .dialog .mdl-textfield--floating-label.is-dirty .mdl-textfield__label {
@@ -15896,6 +15984,10 @@ ons-list-item.lista ons-icon {
   background: rgba(0, 0, 0, 0.5);
 }
 .inspeccion .pageAction button {
+  background: #953a8d;
+  color: #ffffff;
+}
+.inspeccion button.colorize {
   background: #953a8d;
   color: #ffffff;
 }
@@ -15950,6 +16042,10 @@ ons-list-item.lista ons-icon {
   background: rgba(0, 0, 0, 0.5);
 }
 .lista .pageAction button {
+  background: #666666;
+  color: #ffffff;
+}
+.lista button.colorize {
   background: #666666;
   color: #ffffff;
 }
@@ -16017,6 +16113,11 @@ ons-list-item.lista ons-icon {
 }
 .catalogo .pageAction button,
 .detalleCatalogo .pageAction button {
+  background: #83729e;
+  color: #ffffff;
+}
+.catalogo button.colorize,
+.detalleCatalogo button.colorize {
   background: #83729e;
   color: #ffffff;
 }
@@ -16089,13 +16190,13 @@ body {
   background: #f57225;
 }
 .hrcolors div:nth-child(3) {
-  background: #7fce52;
+  background: #65a542;
 }
 .hrcolors div:nth-child(4) {
   background: #2699f1;
 }
 .hrcolors div:nth-child(5) {
-  background: #4dcdfe;
+  background: #3da3cb;
 }
 .hrcolors div:nth-child(6) {
   background: #63ba97;

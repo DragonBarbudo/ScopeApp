@@ -1,0 +1,361 @@
+
+<!--META TAGS-->
+<!-- Sitio -->
+<ons-page class="datos">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ng-click="menu.toggleMenu()">
+        <ons-icon icon="ion-navicon"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">Datos almacenados</div>
+    <div class="right">
+      <ons-toolbar-button ng-click="menuRight.setMenuPage('menuRight.html'); menuRight.toggleMenu()">
+        <ons-icon icon="ion-gear-a"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <div ng-controller="DatosCtrl"></div>
+  <ons-row class="requerimientos">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Requerimientos
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Requerimiento Scope</th>
+            <th>Fecha</th>
+            <th>Requerimiento inicial</th>
+            <th>Requerimiento complementario</th>
+            <th>Sitio</th>
+            <th>Fecha de entrega</th>
+            <th>Requerimientos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in requerimientos track by $index">
+            <td>{{item.remision}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.requerimientoInicial}}</td>
+            <td>{{item.requerimientoComplementario}}</td>
+            <td>{{item.sitio}}</td>
+            <td>{{item.fechaEntrega}}</td>
+            <td><span ng-hide="Utils(item.elemento).length">Sin requerimientos</span>
+              <button ng-show="Utils(item.elemento).length" ng-init="viewHide($index)" ng-click="viewDialog($index)" class="mdl-button mdl-js-button colorize">
+                <ons-icon icon="ion-eye"></ons-icon> Ver
+              </button>
+              <table ng-show="views[$index]" class="mdl-data-table">
+                <thead>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Clave</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item_d in item.elemento">
+                    <td>{{item_d.cantidad}}</td>
+                    <td>{{item_d.unidad}}</td>
+                    <td>{{item_d.clave}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+  <ons-row class="proveedor">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Proveedor
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Requerimiento Scope</th>
+            <th>Fecha</th>
+            <th>Nombre Proveedor</th>
+            <th>Clave Proveedor</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Comentarios Proveedor</th>
+            <th>Nombre Equipo</th>
+            <th>Clave Equipo</th>
+            <th>Familia Equipo</th>
+            <th>Proveedor</th>
+            <th>Comentarios Equipo</th>
+            <th>Captura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in proveedor track by $index">
+            <td>{{item.remision}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.nombreProveedor}}</td>
+            <td>{{item.claveProveedor}}</td>
+            <td>{{item.contacto}}</td>
+            <td>{{item.telefono}}</td>
+            <td>{{item.comentariosProveedor}}</td>
+            <td>{{item.nombreEquipo}}</td>
+            <td>{{item.claveEquipo}}</td>
+            <td>{{item.familiaEquipo}}</td>
+            <td>{{item.proveedor}}</td>
+            <td>{{item.comentariosEquipo}}</td>
+            <td><img src="data:image/jpeg;base64,{{item.captura}}"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+  <ons-row class="transformacion">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Transformaciones
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Folio Sitio</th>
+            <th>Fecha</th>
+            <th>Sitio</th>
+            <th>Transformaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in transformacion track by $index">
+            <td>{{item.folioSitio}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.sitio}}</td>
+            <td><span ng-hide="Utils(item.elemento).length">Sin transformaciones</span>
+              <button ng-show="Utils(item.elemento).length" ng-init="viewHide($index)" ng-click="viewDialog($index)" class="mdl-button mdl-js-button colorize">
+                <ons-icon icon="ion-eye"></ons-icon> Ver
+              </button>
+              <table ng-show="views[$index]" class="mdl-data-table">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="text-center">Producto origen</th>
+                    <th colspan="3" class="text-center">Producto transformado</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Clave</th>
+                    <th>Cantidad</th>
+                    <th>Clave</th>
+                    <th>Comentario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item_d in item.elemento">
+                    <td>{{item_d.cantidad}}</td>
+                    <td>{{item_d.clave}}</td>
+                    <td>{{item_d.cantidadTransformado}}</td>
+                    <td>{{item_d.claveTransformado}}</td>
+                    <td>{{item_d.comentarioTransformado}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+  <ons-row class="baja">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Baja de Equipo
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Folio Sitio</th>
+            <th>Fecha</th>
+            <th>Sitio</th>
+            <th>Bajas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in baja track by $index">
+            <td>{{item.folioSitio}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.sitio}}</td>
+            <td><span ng-hide="Utils(item.elemento).length">Sin bajas</span>
+              <button ng-show="Utils(item.elemento).length" ng-init="viewHide($index)" ng-click="viewDialog($index)" class="mdl-button mdl-js-button colorize">
+                <ons-icon icon="ion-eye"></ons-icon> Ver
+              </button>
+              <table ng-show="views[$index]" class="mdl-data-table">
+                <thead>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Clave</th>
+                    <th>Motivo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item_d in item.elemento">
+                    <td>{{item_d.cantidad}}</td>
+                    <td>{{item_d.clave}}</td>
+                    <td>{{item_d.motivo}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+  <ons-row class="inventario">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Inventario de obra
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Sitio</th>
+            <th>Bajas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in inventario track by $index">
+            <td>{{item.fecha}}</td>
+            <td>{{item.sitio}}</td>
+            <td><span ng-hide="Utils(item.elemento).length">Sin bajas</span>
+              <button ng-show="Utils(item.elemento).length" ng-init="viewHide($index)" ng-click="viewDialog($index)" class="mdl-button mdl-js-button colorize">
+                <ons-icon icon="ion-eye"></ons-icon> Ver
+              </button>
+              <table ng-show="views[$index]" class="mdl-data-table">
+                <thead>
+                  <tr>
+                    <th>Cantidad</th>
+                    <th>Clave</th>
+                    <th>Motivo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item_d in item.elemento">
+                    <td>{{item_d.cantidad}}</td>
+                    <td>{{item_d.clave}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+  <ons-row class="relacion">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Envío y recepción
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Tipo de remisión</th>
+            <th>Remisión</th>
+            <th>Fecha</th>
+            <th>Clave de sitio destino</th>
+            <th>Clave de sitio orígen</th>
+            <th>Fecha de embarque</th>
+            <th>Fecha de arribo</th>
+            <th>Responsable</th>
+            <th>Compañía</th>
+            <th>Placa vehículo</th>
+            <th>Placa plataforma</th>
+            <th>Notas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in relacion track by $index">
+            <td>{{item.TipoRemision}}</td>
+            <td>{{item.NoRemision}}</td>
+            <td>{{item.fecha}}</td>
+            <td>{{item.ClaveSitioDestion}}</td>
+            <td>{{item.ClaveSitioOrigen}}</td>
+            <td>{{item.FechaEmbarque}}</td>
+            <td>{{item.FechaArribo}}</td>
+            <td>{{item.Responsable}}</td>
+            <td>{{item.Compania}}</td>
+            <td>{{item.PlacaVehiculo}}</td>
+            <td>{{item.PlacaPlataforma}}</td>
+            <td>{{item.Notas}}</td>
+            <td><span ng-hide="Utils(item.elemento).length">Sin bajas</span>
+              <button ng-show="Utils(item.elemento).length" ng-init="viewHide($index)" ng-click="viewDialog($index)" class="mdl-button mdl-js-button colorize">
+                <ons-icon icon="ion-eye"></ons-icon> Ver
+              </button>
+              <table ng-show="views[$index]" class="mdl-data-table">
+                <thead>
+                  <tr>
+                    <th>Clave</th>
+                    <th>Cantidad enviada</th>
+                    <th>Cantidad recibida</th>
+                    <th>Diferencia</th>
+                    <th>Captura</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item_d in item.elemento">
+                    <td>{{item_d.clave}}</td>
+                    <td>{{item_d.cantidadEnviada}}</td>
+                    <td>{{item_d.cantidadRecibida}}</td>
+                    <td>{{item_d.cantidadEnviada - item_d.cantidadRecibida}}</td>
+                    <td>Captura...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+  <ons-row class="inspeccion">
+    <ons-col width="100%">
+      <div class="titulo">
+        <ons-icon icon="ion-ios-arrow-right"></ons-icon> Inspección de obra
+      </div>
+      <table ng-controller="DatosCtrl" class="mdl-data-table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Sitio</th>
+            <th>Elementos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in inspeccion track by $index">
+            <td>{{item.fecha}}</td>
+            <td>{{item.sitio}}</td>
+            <td><span ng-hide="Utils(item.elemento).length">Sin bajas</span>
+              <button ng-show="Utils(item.elemento).length" ng-init="viewHide($index)" ng-click="viewDialog($index)" class="mdl-button mdl-js-button colorize">
+                <ons-icon icon="ion-eye"></ons-icon> Ver
+              </button>
+              <table ng-show="views[$index]" class="mdl-data-table">
+                <thead>
+                  <tr>
+                    <th>Captura</th>
+                    <th>Observaciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item_d in item.elemento">
+                    <td>Captura...</td>
+                    <td>{{item_d.observaciones}}      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ons-col>
+  </ons-row>
+</ons-page>

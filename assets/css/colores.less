@@ -14,11 +14,11 @@
   .label{color: @thecolor;}
   hr{border-color: @thecolor;}
   .pageAction{background: rgba(0,0,0,0.5); button{background: @thecolor; color: @w;}}
+  button.colorize{background: @thecolor; color: @w;}
   .dialog {
     background: @thecolor;
     .mdl-textfield--floating-label.is-focused .mdl-textfield__label, .mdl-textfield--floating-label.is-dirty .mdl-textfield__label{ color:@b;}
     .mdl-button--colored{background: @b;color: @w;}
-
     .mdl-textfield__label:after{background-color: @b;}
     .label{color: @gray;}
   }
@@ -35,8 +35,10 @@ ons-list-item.relacion{ .menuColors(@relacion); }
 ons-list-item.catalogo{ .menuColors(@catalogo); }
 ons-list-item.inspeccion{ .menuColors(@inspeccion); }
 ons-list-item.lista{ .menuColors(@lista); }
+ons-list-item.datos{ .menuColors(@datos); }
 
 /* -- page --*/
+.datos{ .allColors(@datos); }
 .requerimientos{.allColors(@requerimientos);}
 .proveedor{.allColors(@proveedor);}
 .transformacion{.allColors(@transformacion);}
@@ -45,4 +47,5 @@ ons-list-item.lista{ .menuColors(@lista); }
 .inventario{ .allColors(@inventario); }
 .inspeccion{ .allColors(@inspeccion); }
 .lista{ .allColors(@lista); }
+
 .catalogo, .detalleCatalogo{ .allColors(@catalogo); }

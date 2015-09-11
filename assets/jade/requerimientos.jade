@@ -4,23 +4,24 @@ ons-navigator(title="Elegir opción", var="autocomplete")
 
   ons-page.requerimientos
     +ons-toolbar('Requerimientos para obras')
-    ons-bottom-toolbar(modifier="transparent").text-right.pageAction
-      button(type="button", onclick="alert('Enviar requerimiento');").mdl-button.mdl-js-button
-        ons-icon(icon="ion-ios-paperplane")
-        |  Guardar
+
   
   
-    form(action="#")
-      
+    form(action="#", ng-controller="RequerimientosCtrl")
+      ons-bottom-toolbar(modifier="transparent").text-right.pageAction
+        button(type="button", ng-click="save()").mdl-button.mdl-js-button
+          ons-icon(icon="ion-ios-paperplane")
+          |  Guardar
       ons-row
         .titulo
            ons-icon(icon="ion-ios-arrow-right")
            |  Información
       .m10
         ons-row
-          ons-col: +input('folio', 'Folio')
-          ons-col: +input('remision', 'No. de requerimiento SCOPE')
+          //ons-col: +input('folio', 'Folio')
+          ons-col: +input('remision', 'No. de requerimiento SCOPE', 'number')
           ons-col: +input('fecha', 'Fecha', 'date')
+          ons-col
         ons-row
           ons-col: +input('requerimientoInicial', 'Requerimiento inicial')
           ons-col: +input('requerimientoComplementario', 'Requerimiento complementario')
@@ -35,7 +36,6 @@ ons-navigator(title="Elegir opción", var="autocomplete")
           ons-icon(icon="ion-ios-arrow-right")
           |  Requerimientos
       .m10
-  
         ons-row
           table.mdl-data-table
             thead
@@ -43,24 +43,22 @@ ons-navigator(title="Elegir opción", var="autocomplete")
                 th Cantidad
                 th Unidad
                 th Clave
-                th Descripción
                 th.addButton(ng-controller="AddItemDialogController")
                   button(type="button", ng-click="show('addItem.html')").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
                     ons-icon(icon="ion-plus-round")
-            tbody
-              tr
-                td 1
-                td Cosita
-                td 19385
-                td  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis incidunt vel consequuntur.
-                td: a(href="#"): ons-icon(icon="ion-close-round")
+            tbody(ng-controller="TableCtrl")
+              tr(ng-repeat="item in items track by $index")
+                td: input(ng-model="campos.elemento[$index].cantidad", ng-init="campos.elemento[$index].cantidad=item.cantidad").mdl-textfield__input 
+                td: input(ng-model="campos.elemento[$index].unidad", ng-init="campos.elemento[$index].unidad=item.unidad").mdl-textfield__input
+                td: input(ng-model="campos.elemento[$index].clave", ng-init="campos.elemento[$index].clave=item.clave").mdl-textfield__input
+                td: a(href="#", ng-click="removeItem($index)"): ons-icon(icon="ion-close-round")
 
 
     ons-template(id="addItem.html")
       ons-dialog(var="addItemDialog" cancelable).requerimientos
         ons-toolbar(inline)
           .center Añadir nuevo
-        .m10.requerimientos
+        form(action="#", ng-controller="DialogCtrl", ng-submit="submit()").m10.requerimientos
           ons-row
             ons-col: +input('cantidad', 'Cantidad')
             ons-col: +input('unidad', 'Unidad')
@@ -69,5 +67,9 @@ ons-navigator(title="Elegir opción", var="autocomplete")
           ons-row
             ons-col.text-center
               button(type="button", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
+                ons-icon(icon="ion-close")
+                |  Cancelar
+            ons-col.text-center
+              button(type="submit", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
                 ons-icon(icon="ion-plus-round")
                 |  Añadir elemento

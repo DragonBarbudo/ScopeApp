@@ -1,6 +1,6 @@
 
 <!--META TAGS-->
-<!-- Sitio-->
+<!-- Sitio -->
 <ons-page class="inicio">
   <div class="m10">
     <ons-row>
@@ -75,7 +75,11 @@
         </button><span>Catálogo</span>
       </ons-col>
       <ons-col></ons-col>
-      <ons-col></ons-col>
+      <ons-col onclick="menu.setMainPage('datos.html', {closeMenu: true, animation:'slide'}); upgrade();" class="datos">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+          <ons-icon icon="ion-clipboard"></ons-icon>
+        </button><span>Datos</span>
+      </ons-col>
       <ons-col></ons-col>
     </ons-row>
   </div>

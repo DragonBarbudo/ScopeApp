@@ -6,7 +6,7 @@ html(lang="es")
   head
     +head(titulo + "" , stylesheets, keywords, description)
   body
-
+    .dbase
     +sliding-menu
     +navigation(menu)
     
@@ -14,6 +14,3 @@ html(lang="es")
     +hrcolors('bottom')
 
     +scripts 
-    script(type="text/javascript", src="cordova.js")
-    script(type="text/javascript", src="assets/js/index.js")
-    script(src="http://localhost:8080/target/target-script-min.js#anonymous")

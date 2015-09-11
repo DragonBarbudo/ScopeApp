@@ -1,6 +1,6 @@
 
 <!--META TAGS-->
-<!-- Sitio-->
+<!-- Sitio -->
 <ons-navigator title="Elegir opción" var="autocomplete">
   <ons-page class="inventario">
     <ons-toolbar>
@@ -11,17 +11,17 @@
       </div>
       <div class="center">Inventario de obra</div>
       <div class="right">
-        <ons-toolbar-button ng-click="menuRight.toggleMenu()">
+        <ons-toolbar-button ng-click="menuRight.setMenuPage('menuRight.html'); menuRight.toggleMenu()">
           <ons-icon icon="ion-gear-a"></ons-icon>
         </ons-toolbar-button>
       </div>
     </ons-toolbar>
-    <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
-      <button type="button" onclick="triggerForm('#inventarioForm')" class="mdl-button mdl-js-button">
-        <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar
-      </button>
-    </ons-bottom-toolbar>
-    <form action="#" id="inventarioForm">
+    <form action="#" ng-controller="InventarioCtrl" id="inventarioForm">
+      <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
+        <button type="button" ng-click="save()" class="mdl-button mdl-js-button">
+          <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar  
+        </button>
+      </ons-bottom-toolbar>
       <ons-row>
         <div class="titulo">
           <ons-icon icon="ion-ios-arrow-right"></ons-icon> Información
@@ -29,31 +29,22 @@
       </ons-row>
       <div class="m10">
         <ons-row>
+          <!--ons-col: +input('folioScope', 'Folio SCOPE')-->
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="folioScope" name="folioScope" class="mdl-textfield__input"/>
-              <label for="folioScope" class="mdl-textfield__label">Folio SCOPE</label>
-            </div>
-          </ons-col>
-          <ons-col>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="date" id="fecha" name="fecha" class="mdl-textfield__input"/>
+              <input type="date" id="fecha" name="fecha" ng-model="campos.fecha" class="mdl-textfield__input"/>
               <label for="fecha" class="mdl-textfield__label">Fecha</label>
             </div>
           </ons-col>
-          <ons-col></ons-col>
-        </ons-row>
-        <ons-row>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
-              <input type="text" id="sitio" name="sitio" class="mdl-textfield__input"/>
+              <input type="text" id="sitio" name="sitio" ng-model="campos.sitio" class="mdl-textfield__input"/>
               <label for="sitio" class="mdl-textfield__label"><span>Sitio</span> </label>
-              <button type="button" onClick="openMenuSitios('sitio', 'db_sitios.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+              <button type="button" onClick="openMenuSitios('sitio', 'lateral_db_sitios.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <ons-icon icon="ion-android-list"></ons-icon>
               </button>
             </div>
           </ons-col>
-          <ons-col></ons-col>
           <ons-col></ons-col>
         </ons-row>
         <hr/>
@@ -71,7 +62,6 @@
                 <th>Cantidad</th>
                 <th>Unidad</th>
                 <th>Clave</th>
-                <th>Descripción</th>
                 <th ng-controller="AddItemDialogController" class="addButton">
                   <button type="button" ng-click="show('addItem.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                     <ons-icon icon="ion-plus-round"></ons-icon>
@@ -79,13 +69,18 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>1023</td>
-                <td>Clave</td>
-                <td>Descripción</td>
-                <td><a href="#">
+            <tbody ng-controller="TableCtrl">
+              <tr ng-repeat="item in items track by $index">
+                <td>
+                  <input ng-model="campos.elemento[$index].cantidad" ng-init="campos.elemento[$index].cantidad=item.cantidad" class="mdl-textfield__input"/>
+                </td>
+                <td>
+                  <input ng-model="campos.elemento[$index].unidad" ng-init="campos.elemento[$index].unidad=item.unidad" class="mdl-textfield__input"/>
+                </td>
+                <td>
+                  <input ng-model="campos.elemento[$index].clave" ng-init="campos.elemento[$index].clave=item.clave" class="mdl-textfield__input"/>
+                </td>
+                <td><a href="#" ng-click="removeItem($index)">
                     <ons-icon icon="ion-close-round"></ons-icon></a></td>
               </tr>
             </tbody>
@@ -96,46 +91,49 @@
   </ons-page>
 </ons-navigator>
 <ons-template id="addItem.html">
-  <ons-dialog var="addItemDialog" cancelable="cancelable">
+  <ons-dialog var="addItemDialog" cancelable="cancelable" class="inventario">
     <ons-toolbar inline="inline">
       <div class="center">Añadir nuevo</div>
     </ons-toolbar>
-    <div class="m10 inventario">
+    <form action="#" ng-controller="DialogCtrl" ng-submit="submit()" class="m10 inventario">
       <ons-row>
         <ons-col>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="cantidad" name="cantidad" class="mdl-textfield__input"/>
+            <input type="text" id="cantidad" name="cantidad" ng-model="campos.cantidad" class="mdl-textfield__input"/>
             <label for="cantidad" class="mdl-textfield__label">Cantidad</label>
           </div>
         </ons-col>
         <ons-col>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="unidad" name="unidad" class="mdl-textfield__input"/>
+            <input type="text" id="unidad" name="unidad" ng-model="campos.unidad" class="mdl-textfield__input"/>
             <label for="unidad" class="mdl-textfield__label">Unidad</label>
           </div>
         </ons-col>
       </ons-row>
       <ons-row>
         <ons-col>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="clave" name="clave" class="mdl-textfield__input"/>
-            <label for="clave" class="mdl-textfield__label">Clave</label>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
+            <input type="text" id="clave" name="clave" ng-model="campos.clave" class="mdl-textfield__input"/>
+            <label for="clave" class="mdl-textfield__label"><span>Clave</span> </label>
+            <button type="button" onClick="openMenuSitios('clave', 'lateral_db_catalogos.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+              <ons-icon icon="ion-android-list"></ons-icon>
+            </button>
           </div>
         </ons-col>
-        <ons-col>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="descripcion" name="descripcion" class="mdl-textfield__input"/>
-            <label for="descripcion" class="mdl-textfield__label">Descripción</label>
-          </div>
-        </ons-col>
+        <ons-col></ons-col>
       </ons-row>
       <ons-row>
         <ons-col class="text-center">
           <button type="button" ng-click="addItemDialog.hide()" class="mdl-button mdl-js-button mdl-button--colored">
+            <ons-icon icon="ion-close"></ons-icon> Cancelar
+          </button>
+        </ons-col>
+        <ons-col class="text-center">
+          <button type="submit" ng-click="addItemDialog.hide()" class="mdl-button mdl-js-button mdl-button--colored">
             <ons-icon icon="ion-plus-round"></ons-icon> Añadir elemento
           </button>
         </ons-col>
       </ons-row>
-    </div>
+    </form>
   </ons-dialog>
 </ons-template>

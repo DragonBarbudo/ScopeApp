@@ -1,0 +1,277 @@
+include _config.jade
+include _mixins.jade
+
+
+ons-page.datos
+  +ons-toolbar('Datos almacenados')
+  div(ng-controller="DatosCtrl")
+  ons-row.requerimientos
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Requerimientos
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Requerimiento Scope
+            th Fecha
+            th Requerimiento inicial
+            th Requerimiento complementario
+            th Sitio
+            th Fecha de entrega
+            th Requerimientos
+        tbody
+          tr(ng-repeat="item in requerimientos track by $index")
+            td {{item.remision}}
+            td {{item.fecha}}
+            td {{item.requerimientoInicial}}
+            td {{item.requerimientoComplementario}}
+            td {{item.sitio}}
+            td {{item.fechaEntrega}}
+            td
+              span(ng-hide="Utils(item.elemento).length") Sin requerimientos
+              button.mdl-button.mdl-js-button.colorize(ng-show="Utils(item.elemento).length", ng-init="viewHide($index)", ng-click="viewDialog($index)")
+                ons-icon(icon="ion-eye")
+                |  Ver
+              table.mdl-data-table(ng-show="views[$index]")
+                thead
+                  tr
+                    th Cantidad
+                    th Unidad
+                    th Clave
+                tbody
+                  tr(ng-repeat="item_d in item.elemento")
+                    td {{item_d.cantidad}}
+                    td {{item_d.unidad}}
+                    td {{item_d.clave}}
+                    
+  ons-row.proveedor
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Proveedor
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Requerimiento Scope
+            th Fecha
+            th Nombre Proveedor
+            th Clave Proveedor
+            th Contacto
+            th Teléfono
+            th Comentarios Proveedor
+            th Nombre Equipo
+            th Clave Equipo
+            th Familia Equipo
+            th Proveedor
+            th Comentarios Equipo
+            th Captura
+        tbody
+          tr(ng-repeat="item in proveedor track by $index")
+            td {{item.remision}}
+            td {{item.fecha}}
+            td {{item.nombreProveedor}}
+            td {{item.claveProveedor}}
+            td {{item.contacto}}
+            td {{item.telefono}}
+            td {{item.comentariosProveedor}}
+            td {{item.nombreEquipo}}
+            td {{item.claveEquipo}}
+            td {{item.familiaEquipo}}
+            td {{item.proveedor}}
+            td {{item.comentariosEquipo}}
+            td: img(src="data:image/jpeg;base64,{{item.captura}}")
+
+  ons-row.transformacion
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Transformaciones
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Folio Sitio
+            th Fecha
+            th Sitio
+            th Transformaciones
+        tbody
+          tr(ng-repeat="item in transformacion track by $index")
+            td {{item.folioSitio}}
+            td {{item.fecha}}
+            td {{item.sitio}}
+            td
+              span(ng-hide="Utils(item.elemento).length") Sin transformaciones
+              button.mdl-button.mdl-js-button.colorize(ng-show="Utils(item.elemento).length", ng-init="viewHide($index)", ng-click="viewDialog($index)")
+                ons-icon(icon="ion-eye")
+                |  Ver
+              table.mdl-data-table(ng-show="views[$index]")
+                thead
+                  tr
+                    th(colspan="2").text-center Producto origen
+                    th(colspan="3").text-center Producto transformado
+                    th
+                  tr
+                    th Cantidad
+                    th Clave
+                    th Cantidad
+                    th Clave
+                    th Comentario
+                tbody
+                  tr(ng-repeat="item_d in item.elemento")
+                    td {{item_d.cantidad}}
+                    td {{item_d.clave}}
+                    td {{item_d.cantidadTransformado}}
+                    td {{item_d.claveTransformado}}
+                    td {{item_d.comentarioTransformado}}
+  ons-row.baja
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Baja de Equipo
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Folio Sitio
+            th Fecha
+            th Sitio
+            th Bajas
+        tbody
+          tr(ng-repeat="item in baja track by $index")
+            td {{item.folioSitio}}
+            td {{item.fecha}}
+            td {{item.sitio}}
+            td
+              span(ng-hide="Utils(item.elemento).length") Sin bajas
+              button.mdl-button.mdl-js-button.colorize(ng-show="Utils(item.elemento).length", ng-init="viewHide($index)", ng-click="viewDialog($index)")
+                ons-icon(icon="ion-eye")
+                |  Ver
+              table.mdl-data-table(ng-show="views[$index]")
+                thead
+                  tr
+                    th Cantidad
+                    th Clave
+                    th Motivo
+                tbody
+                  tr(ng-repeat="item_d in item.elemento")
+                    td {{item_d.cantidad}}
+                    td {{item_d.clave}}
+                    td {{item_d.motivo}}
+        
+      
+
+  ons-row.inventario
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Inventario de obra
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Fecha
+            th Sitio
+            th Bajas
+        tbody
+          tr(ng-repeat="item in inventario track by $index")
+            td {{item.fecha}}
+            td {{item.sitio}}
+            td
+              span(ng-hide="Utils(item.elemento).length") Sin bajas
+              button.mdl-button.mdl-js-button.colorize(ng-show="Utils(item.elemento).length", ng-init="viewHide($index)", ng-click="viewDialog($index)")
+                ons-icon(icon="ion-eye")
+                |  Ver
+              table.mdl-data-table(ng-show="views[$index]")
+                thead
+                  tr
+                    th Cantidad
+                    th Clave
+                    th Motivo
+                tbody
+                  tr(ng-repeat="item_d in item.elemento")
+                    td {{item_d.cantidad}}
+                    td {{item_d.clave}}
+  
+  ons-row.relacion
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Envío y recepción
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Tipo de remisión
+            th Remisión
+            th Fecha
+            th Clave de sitio destino
+            th Clave de sitio orígen
+            th Fecha de embarque
+            th Fecha de arribo
+            th Responsable
+            th Compañía
+            th Placa vehículo
+            th Placa plataforma
+            th Notas
+        tbody
+          tr(ng-repeat="item in relacion track by $index")
+            td {{item.TipoRemision}}
+            td {{item.NoRemision}}
+            td {{item.fecha}}
+            td {{item.ClaveSitioDestion}}
+            td {{item.ClaveSitioOrigen}}
+            td {{item.FechaEmbarque}}
+            td {{item.FechaArribo}}
+            td {{item.Responsable}}
+            td {{item.Compania}}
+            td {{item.PlacaVehiculo}}
+            td {{item.PlacaPlataforma}}
+            td {{item.Notas}}
+            td
+              span(ng-hide="Utils(item.elemento).length") Sin bajas
+              button.mdl-button.mdl-js-button.colorize(ng-show="Utils(item.elemento).length", ng-init="viewHide($index)", ng-click="viewDialog($index)")
+                ons-icon(icon="ion-eye")
+                |  Ver
+              table.mdl-data-table(ng-show="views[$index]")
+                thead
+                  tr
+                    th Clave
+                    th Cantidad enviada
+                    th Cantidad recibida
+                    th Diferencia
+                    th Captura
+                tbody
+                  tr(ng-repeat="item_d in item.elemento")
+                    td {{item_d.clave}}
+                    td {{item_d.cantidadEnviada}}
+                    td {{item_d.cantidadRecibida}}
+                    td {{item_d.cantidadEnviada - item_d.cantidadRecibida}}
+                    td Captura...
+      
+
+  ons-row.inspeccion
+    ons-col(width="100%")
+      .titulo
+         ons-icon(icon="ion-ios-arrow-right")
+         |  Inspección de obra
+      table.mdl-data-table(ng-controller="DatosCtrl")
+        thead
+          tr
+            th Fecha
+            th Sitio
+            th Elementos
+        tbody
+          tr(ng-repeat="item in inspeccion track by $index")
+            td {{item.fecha}}
+            td {{item.sitio}}
+            td
+              span(ng-hide="Utils(item.elemento).length") Sin bajas
+              button.mdl-button.mdl-js-button.colorize(ng-show="Utils(item.elemento).length", ng-init="viewHide($index)", ng-click="viewDialog($index)")
+                ons-icon(icon="ion-eye")
+                |  Ver
+              table.mdl-data-table(ng-show="views[$index]")
+                thead
+                  tr
+                    th Captura
+                    th Observaciones
+                tbody
+                  tr(ng-repeat="item_d in item.elemento")
+                    td Captura...
+                    td {{item_d.observaciones}}      

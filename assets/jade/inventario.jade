@@ -3,27 +3,22 @@ include _mixins.jade
 ons-navigator(title="Elegir opción", var="autocomplete")
   ons-page.inventario
     +ons-toolbar('Inventario de obra')
-    ons-bottom-toolbar(modifier="transparent").text-right.pageAction
-      button(type="button", onclick="triggerForm('#inventarioForm')").mdl-button.mdl-js-button
-        ons-icon(icon="ion-ios-paperplane")
-        |  Guardar
-  
-  
-    form(action="#")#inventarioForm
-      
+    form(action="#", ng-controller="InventarioCtrl")#inventarioForm
+      ons-bottom-toolbar(modifier="transparent").text-right.pageAction
+        button(type="button", ng-click="save()").mdl-button.mdl-js-button
+          ons-icon(icon="ion-ios-paperplane")
+          |  Guardar  
       ons-row
         .titulo
            ons-icon(icon="ion-ios-arrow-right")
            |  Información
       .m10
         ons-row
-          ons-col: +input('folioScope', 'Folio SCOPE')
+          //ons-col: +input('folioScope', 'Folio SCOPE')
           ons-col: +input('fecha', 'Fecha', 'date')
+          ons-col: +input('sitio', 'Sitio', 'text', 'lateral_db_sitios.html')
           ons-col
-        ons-row
-          ons-col: +input('sitio', 'Sitio', 'text', 'db_sitios.html')
-          ons-col
-          ons-col
+
         hr
       ons-row
         .titulo
@@ -37,31 +32,33 @@ ons-navigator(title="Elegir opción", var="autocomplete")
                 th Cantidad
                 th Unidad
                 th Clave
-                th Descripción
                 th.addButton(ng-controller="AddItemDialogController")
                   button(type="button", ng-click="show('addItem.html')").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
                     ons-icon(icon="ion-plus-round")
-            tbody
-              tr
-                td 1
-                td 1023
-                td Clave
-                td Descripción
-                td: a(href="#"): ons-icon(icon="ion-close-round")
+            tbody(ng-controller="TableCtrl")
+              tr(ng-repeat="item in items track by $index")
+                td: input(ng-model="campos.elemento[$index].cantidad", ng-init="campos.elemento[$index].cantidad=item.cantidad").mdl-textfield__input 
+                td: input(ng-model="campos.elemento[$index].unidad", ng-init="campos.elemento[$index].unidad=item.unidad").mdl-textfield__input 
+                td: input(ng-model="campos.elemento[$index].clave", ng-init="campos.elemento[$index].clave=item.clave").mdl-textfield__input 
+                td: a(href="#", ng-click="removeItem($index)"): ons-icon(icon="ion-close-round")
      
 ons-template(id="addItem.html")
-  ons-dialog(var="addItemDialog" cancelable)
+  ons-dialog(var="addItemDialog" cancelable).inventario
     ons-toolbar(inline)
       .center Añadir nuevo
-    .m10.inventario
+    form(action="#", ng-controller="DialogCtrl", ng-submit="submit()").m10.inventario
       ons-row
         ons-col: +input('cantidad', 'Cantidad')
         ons-col: +input('unidad', 'Unidad')
       ons-row
-        ons-col: +input('clave', 'Clave')
-        ons-col: +input('descripcion', 'Descripción') 
+        ons-col: +input('clave', 'Clave', 'text', 'lateral_db_catalogos.html')
+        ons-col
       ons-row
         ons-col.text-center
           button(type="button", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
+            ons-icon(icon="ion-close")
+            |  Cancelar
+        ons-col.text-center
+          button(type="submit", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
             ons-icon(icon="ion-plus-round")
             |  Añadir elemento

@@ -1,6 +1,6 @@
 
 <!--META TAGS-->
-<!-- Sitio-->
+<!-- Sitio -->
 <ons-navigator title="Elegir opción" var="autocomplete">
   <ons-page class="relacion">
     <ons-toolbar>
@@ -11,17 +11,17 @@
       </div>
       <div class="center">Relación de envío y recepción</div>
       <div class="right">
-        <ons-toolbar-button ng-click="menuRight.toggleMenu()">
+        <ons-toolbar-button ng-click="menuRight.setMenuPage('menuRight.html'); menuRight.toggleMenu()">
           <ons-icon icon="ion-gear-a"></ons-icon>
         </ons-toolbar-button>
       </div>
     </ons-toolbar>
-    <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
-      <button type="button" onclick="alert('Realiza inventario');" class="mdl-button mdl-js-button">
-        <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar
-      </button>
-    </ons-bottom-toolbar>
-    <form action="#">
+    <form action="#" ng-controller="RelacionCtrl">
+      <ons-bottom-toolbar modifier="transparent" class="text-right pageAction">
+        <button type="button" ng-click="save()" class="mdl-button mdl-js-button">
+          <ons-icon icon="ion-ios-paperplane"></ons-icon> Guardar
+        </button>
+      </ons-bottom-toolbar>
       <ons-row>
         <div class="titulo">
           <ons-icon icon="ion-ios-arrow-right"></ons-icon> Información
@@ -29,45 +29,46 @@
       </ons-row>
       <div class="m10">
         <ons-row>
+          <!--ons-col: +input('Folio', 'Folio', 'number')-->
+          <!--Entrada o salida | obligatoria-->
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="folio" name="folio" class="mdl-textfield__input"/>
-              <label for="folio" class="mdl-textfield__label">Folio</label>
+              <input type="text" id="TipoRemision" name="TipoRemision" ng-model="campos.TipoRemision" class="mdl-textfield__input"/>
+              <label for="TipoRemision" class="mdl-textfield__label">Tipo de remisión</label>
             </div>
           </ons-col>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="date" id="fecha" name="fecha" class="mdl-textfield__input"/>
+              <input type="number" id="NoRemision" name="NoRemision" ng-model="campos.NoRemision" class="mdl-textfield__input"/>
+              <label for="NoRemision" class="mdl-textfield__label">Nº de remisión SCOPE</label>
+            </div>
+          </ons-col>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="date" id="fecha" name="fecha" ng-model="campos.fecha" class="mdl-textfield__input"/>
               <label for="fecha" class="mdl-textfield__label">Fecha</label>
-            </div>
-          </ons-col>
-          <ons-col>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="noRemision" name="noRemision" class="mdl-textfield__input"/>
-              <label for="noRemision" class="mdl-textfield__label">Nº de remisión SCOPE</label>
             </div>
           </ons-col>
         </ons-row>
         <ons-row>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
-              <input type="text" id="sitioDestion" name="sitioDestion" class="mdl-textfield__input"/>
-              <label for="sitioDestion" class="mdl-textfield__label"><span>Sitio destino</span> </label>
-              <button type="button" onClick="openMenuSitios('sitioDestion', 'db_sitios.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+              <input type="text" id="ClaveSitioDestion" name="ClaveSitioDestion" ng-model="campos.ClaveSitioDestion" class="mdl-textfield__input"/>
+              <label for="ClaveSitioDestion" class="mdl-textfield__label"><span>Sitio destino</span> </label>
+              <button type="button" onClick="openMenuSitios('ClaveSitioDestion', 'lateral_db_sitios.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <ons-icon icon="ion-android-list"></ons-icon>
               </button>
             </div>
           </ons-col>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
-              <input type="text" id="sitioOrigen" name="sitioOrigen" class="mdl-textfield__input"/>
-              <label for="sitioOrigen" class="mdl-textfield__label"><span>Sitio orígen</span> </label>
-              <button type="button" onClick="openMenuSitios('sitioOrigen', 'db_sitios.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+              <input type="text" id="ClaveSitioOrigen" name="ClaveSitioOrigen" ng-model="campos.ClaveSitioOrigen" class="mdl-textfield__input"/>
+              <label for="ClaveSitioOrigen" class="mdl-textfield__label"><span>Sitio orígen</span> </label>
+              <button type="button" onClick="openMenuSitios('ClaveSitioOrigen', 'lateral_db_sitios.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
                 <ons-icon icon="ion-android-list"></ons-icon>
               </button>
             </div>
           </ons-col>
-          <ons-col></ons-col>
         </ons-row>
         <hr/>
       </div>
@@ -83,20 +84,20 @@
         <ons-row>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="date" id="fechaEmbarque" name="fechaEmbarque" class="mdl-textfield__input"/>
-              <label for="fechaEmbarque" class="mdl-textfield__label">Fecha de embarque</label>
+              <input type="date" id="FechaEmbarque" name="FechaEmbarque" ng-model="campos.FechaEmbarque" class="mdl-textfield__input"/>
+              <label for="FechaEmbarque" class="mdl-textfield__label">Fecha de embarque</label>
             </div>
           </ons-col>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="date" id="fechaArribo" name="fechaArribo" class="mdl-textfield__input"/>
-              <label for="fechaArribo" class="mdl-textfield__label">Fecha estimada de arribo</label>
+              <input type="date" id="FechaArribo" name="FechaArribo" ng-model="campos.FechaArribo" class="mdl-textfield__input"/>
+              <label for="FechaArribo" class="mdl-textfield__label">Fecha estimada de arribo</label>
             </div>
           </ons-col>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="repsonsable" name="repsonsable" class="mdl-textfield__input"/>
-              <label for="repsonsable" class="mdl-textfield__label">Responsable</label>
+              <input type="text" id="Responsable" name="Responsable" ng-model="campos.Responsable" class="mdl-textfield__input"/>
+              <label for="Responsable" class="mdl-textfield__label">Responsable</label>
             </div>
           </ons-col>
         </ons-row>
@@ -109,20 +110,20 @@
         <ons-row>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="compania" name="compania" class="mdl-textfield__input"/>
-              <label for="compania" class="mdl-textfield__label">Compañía</label>
+              <input type="text" id="Compania" name="Compania" ng-model="campos.Compania" class="mdl-textfield__input"/>
+              <label for="Compania" class="mdl-textfield__label">Compañía</label>
             </div>
           </ons-col>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="placaVehiculo" name="placaVehiculo" class="mdl-textfield__input"/>
-              <label for="placaVehiculo" class="mdl-textfield__label">Placa del vehículo</label>
+              <input type="text" id="PlacaVehiculo" name="PlacaVehiculo" ng-model="campos.PlacaVehiculo" class="mdl-textfield__input"/>
+              <label for="PlacaVehiculo" class="mdl-textfield__label">Placa del vehículo</label>
             </div>
           </ons-col>
           <ons-col>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input type="text" id="placaPlataforma" name="placaPlataforma" class="mdl-textfield__input"/>
-              <label for="placaPlataforma" class="mdl-textfield__label">Placa de plataforma</label>
+              <input type="text" id="PlacaPlataforma" name="PlacaPlataforma" ng-model="campos.PlacaPlataforma" class="mdl-textfield__input"/>
+              <label for="PlacaPlataforma" class="mdl-textfield__label">Placa de plataforma</label>
             </div>
           </ons-col>
         </ons-row>
@@ -140,19 +141,19 @@
             <ul class="list">
               <li class="list__item">Superintendente / Residente
                 <label class="switch switch--list-item">
-                  <input type="checkbox" class="switch__input"/>
+                  <input type="checkbox" ng-model="campos.responsiva.ResponsivaSuperintendente" class="switch__input"/>
                   <div class="switch__toggle"></div>
                 </label>
               </li>
               <li class="list__item">Administrador de andamio
                 <label class="switch switch--list-item">
-                  <input type="checkbox" class="switch__input"/>
+                  <input type="checkbox" ng-model="campos.responsiva.ResponsivaAdministrador" class="switch__input"/>
                   <div class="switch__toggle"></div>
                 </label>
               </li>
               <li class="list__item">Contratista / Subcontratista
                 <label class="switch switch--list-item">
-                  <input type="checkbox" class="switch__input"/>
+                  <input type="checkbox" ng-model="campos.responsiva.ResponsivaContratista" class="switch__input"/>
                   <div class="switch__toggle"></div>
                 </label>
               </li>
@@ -171,8 +172,8 @@
           <table class="mdl-data-table mdl-js-data-table">
             <thead>
               <tr>
+                <th>Captura</th>
                 <th>Clave</th>
-                <th>Descripción</th>
                 <th>Cantidad enviada</th>
                 <th>Cantidad recibida</th>
                 <th>Diferencia</th>
@@ -183,33 +184,53 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Descripción</td>
-                <td>12</td>
-                <td>5</td>
-                <td>7</td>
-                <td><a href="#">
+            <tbody ng-controller="TableCtrl">
+              <tr ng-repeat="item in items track by $index">
+                <td><img ng-src="" alt="" id="picture"/></td>
+                <td>
+                  <input ng-model="campos.elemento[$index].clave" ng-init="campos.elemento[$index].clave=item.clave" class="mdl-textfield__input"/>
+                </td>
+                <td>
+                  <input ng-model="campos.elemento[$index].cantidadEnviada" ng-init="campos.elemento[$index].cantidadEnviada=item.cantidadEnviada" class="mdl-textfield__input"/>
+                </td>
+                <td>
+                  <input ng-model="campos.elemento[$index].cantidadRecibida" ng-init="campos.elemento[$index].cantidadRecibida=item.cantidadRecibida" class="mdl-textfield__input"/>
+                </td>
+                <!--Es calculado:-->
+                <td>{{campos.elemento[$index].cantidadEnviada - campos.elemento[$index].cantidadRecibida}}</td>
+                <td><a href="#" ng-click="removeItem($index)">
                     <ons-icon icon="ion-close-round"></ons-icon></a></td>
               </tr>
             </tbody>
           </table>
         </ons-row>
       </div>
+      <ons-row>
+        <p class="label">Notas</p>
+      </ons-row>
+      <div class="m10">
+        <ons-row>
+          <ons-col>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input type="text" id="Notas" name="Notas" ng-model="campos.Notas" class="mdl-textfield__input"/>
+              <label for="Notas" class="mdl-textfield__label">Notas</label>
+            </div>
+          </ons-col>
+        </ons-row>
+      </div>
     </form>
   </ons-page>
 </ons-navigator>
 <ons-template id="addItem.html">
-  <ons-dialog var="addItemDialog" cancelable="cancelable">
+  <ons-dialog var="addItemDialog" cancelable="cancelable" class="relacion">
     <ons-toolbar inline="inline">
       <div class="center">Añadir nuevo</div>
     </ons-toolbar>
-    <div class="m10 relacion">
+    <form action="#" ng-controller="DialogCtrl" ng-submit="submit()" class="m10 relacion">
       <p>Captura o selección de imagen</p>
       <ons-row>
         <ons-col class="text-center">
-          <button type="button" ng-click="alert('Tomar foto');" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+          <button type="button" ng-click="camera()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
             <ons-icon icon="ion-camera"></ons-icon>
           </button>
         </ons-col>
@@ -217,45 +238,42 @@
       <p>Datos</p>
       <ons-row>
         <ons-col>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="clave" name="clave" class="mdl-textfield__input"/>
-            <label for="clave" class="mdl-textfield__label">Clave</label>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label inputDeployer">
+            <input type="text" id="clave" name="clave" ng-model="campos.clave" class="mdl-textfield__input"/>
+            <label for="clave" class="mdl-textfield__label"><span>Clave</span> </label>
+            <button type="button" onClick="openMenuSitios('clave', 'lateral_db_catalogos.html')" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+              <ons-icon icon="ion-android-list"></ons-icon>
+            </button>
           </div>
         </ons-col>
-        <ons-col>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="descripcion" name="descripcion" class="mdl-textfield__input"/>
-            <label for="descripcion" class="mdl-textfield__label">Descripción</label>
-          </div>
-        </ons-col>
+        <ons-col></ons-col>
       </ons-row>
       <ons-row>
         <ons-col>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="cantidadEnviada" name="cantidadEnviada" class="mdl-textfield__input"/>
+            <input type="text" id="cantidadEnviada" name="cantidadEnviada" ng-model="campos.cantidadEnviada" class="mdl-textfield__input"/>
             <label for="cantidadEnviada" class="mdl-textfield__label">Cantidad enviada</label>
           </div>
         </ons-col>
         <ons-col>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="cantidadRecibida" name="cantidadRecibida" class="mdl-textfield__input"/>
+            <input type="text" id="cantidadRecibida" name="cantidadRecibida" ng-model="campos.cantidadRecibida" class="mdl-textfield__input"/>
             <label for="cantidadRecibida" class="mdl-textfield__label">Cantidad recibida</label>
-          </div>
-        </ons-col>
-        <ons-col>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input type="text" id="diferencia" name="diferencia" class="mdl-textfield__input"/>
-            <label for="diferencia" class="mdl-textfield__label">Diferencia</label>
           </div>
         </ons-col>
       </ons-row>
       <ons-row>
         <ons-col class="text-center">
           <button type="button" ng-click="addItemDialog.hide()" class="mdl-button mdl-js-button mdl-button--colored">
+            <ons-icon icon="ion-close"></ons-icon> Cancelar
+          </button>
+        </ons-col>
+        <ons-col class="text-center">
+          <button type="submit" ng-click="addItemDialog.hide()" class="mdl-button mdl-js-button mdl-button--colored">
             <ons-icon icon="ion-plus-round"></ons-icon> Añadir elemento
           </button>
         </ons-col>
       </ons-row>
-    </div>
+    </form>
   </ons-dialog>
 </ons-template>

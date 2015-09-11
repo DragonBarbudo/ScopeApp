@@ -3,27 +3,25 @@ include _mixins.jade
 ons-navigator(title="Elegir opción", var="autocomplete")
   ons-page.relacion
     +ons-toolbar('Relación de envío y recepción')
-    ons-bottom-toolbar(modifier="transparent").text-right.pageAction
-      button(type="button", onclick="alert('Realiza inventario');").mdl-button.mdl-js-button
-        ons-icon(icon="ion-ios-paperplane")
-        |  Guardar
-  
-  
-    form(action="#")
-      
+    form(action="#", ng-controller="RelacionCtrl")
+      ons-bottom-toolbar(modifier="transparent").text-right.pageAction
+        button(type="button", ng-click="save()").mdl-button.mdl-js-button
+          ons-icon(icon="ion-ios-paperplane")
+          |  Guardar
       ons-row
         .titulo
            ons-icon(icon="ion-ios-arrow-right")
            |  Información
       .m10
         ons-row
-          ons-col: +input('folio', 'Folio')
+          //ons-col: +input('Folio', 'Folio', 'number')
+          //Entrada o salida | obligatoria
+          ons-col: +input('TipoRemision', 'Tipo de remisión')
+          ons-col: +input('NoRemision', 'Nº de remisión SCOPE', 'number')
           ons-col: +input('fecha', 'Fecha', 'date')
-          ons-col: +input('noRemision', 'Nº de remisión SCOPE')
         ons-row
-          ons-col: +input('sitioDestion', 'Sitio destino', 'text', 'db_sitios.html')
-          ons-col: +input('sitioOrigen', 'Sitio orígen', 'text', 'db_sitios.html')
-          ons-col
+          ons-col: +input('ClaveSitioDestion', 'Sitio destino', 'text', 'lateral_db_sitios.html')
+          ons-col: +input('ClaveSitioOrigen', 'Sitio orígen', 'text', 'lateral_db_sitios.html')
         hr
       ons-row
         .titulo
@@ -33,17 +31,17 @@ ons-navigator(title="Elegir opción", var="autocomplete")
         p.label Envío
       .m10
         ons-row
-          ons-col: +input('fechaEmbarque', 'Fecha de embarque', 'date')
-          ons-col: +input('fechaArribo', 'Fecha estimada de arribo', 'date')
-          ons-col: +input('repsonsable', 'Responsable')
+          ons-col: +input('FechaEmbarque', 'Fecha de embarque', 'date')
+          ons-col: +input('FechaArribo', 'Fecha estimada de arribo', 'date')
+          ons-col: +input('Responsable', 'Responsable')
         hr
       ons-row
         p.label Transporte
       .m10
         ons-row
-          ons-col: +input('compania', 'Compañía')
-          ons-col: +input('placaVehiculo', 'Placa del vehículo')
-          ons-col: +input('placaPlataforma', 'Placa de plataforma')
+          ons-col: +input('Compania', 'Compañía')
+          ons-col: +input('PlacaVehiculo', 'Placa del vehículo')
+          ons-col: +input('PlacaPlataforma', 'Placa de plataforma')
         hr
       ons-row
         p.label Responsivas
@@ -56,17 +54,17 @@ ons-navigator(title="Elegir opción", var="autocomplete")
               li.list__item
                 | Superintendente / Residente
                 label.switch.switch--list-item
-                  input(type="checkbox").switch__input
+                  input(type="checkbox", ng-model="campos.responsiva.ResponsivaSuperintendente").switch__input
                   .switch__toggle
               li.list__item
                 | Administrador de andamio
                 label.switch.switch--list-item
-                  input(type="checkbox").switch__input
+                  input(type="checkbox", ng-model="campos.responsiva.ResponsivaAdministrador").switch__input
                   .switch__toggle
               li.list__item
                 | Contratista / Subcontratista
                 label.switch.switch--list-item
-                  input(type="checkbox").switch__input
+                  input(type="checkbox", ng-model="campos.responsiva.ResponsivaContratista").switch__input
                   .switch__toggle
   
       hr   
@@ -79,45 +77,54 @@ ons-navigator(title="Elegir opción", var="autocomplete")
           table.mdl-data-table.mdl-js-data-table
             thead
               tr
+                th Captura
                 th Clave
-                th Descripción
                 th Cantidad enviada
                 th Cantidad recibida
                 th Diferencia
                 th.addButton(ng-controller="AddItemDialogController")
                   button(type="button", ng-click="show('addItem.html')").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
                     ons-icon(icon="ion-plus-round")
-            tbody
-              tr
-                td 1
-                td Descripción
-                td 12
-                td 5
-                td 7
-                td: a(href="#"): ons-icon(icon="ion-close-round")
+            tbody(ng-controller="TableCtrl")
+              tr(ng-repeat="item in items track by $index")
                 
+                td: img(ng-src="", alt="")#picture 
+                td: input(ng-model="campos.elemento[$index].clave", ng-init="campos.elemento[$index].clave=item.clave").mdl-textfield__input 
+                td: input(ng-model="campos.elemento[$index].cantidadEnviada", ng-init="campos.elemento[$index].cantidadEnviada=item.cantidadEnviada").mdl-textfield__input 
+                td: input(ng-model="campos.elemento[$index].cantidadRecibida", ng-init="campos.elemento[$index].cantidadRecibida=item.cantidadRecibida").mdl-textfield__input 
+                //Es calculado:
+                td {{campos.elemento[$index].cantidadEnviada - campos.elemento[$index].cantidadRecibida}}
+                td: a(href="#", ng-click="removeItem($index)"): ons-icon(icon="ion-close-round")
+      ons-row
+        p.label Notas
+      .m10
+        ons-row
+          ons-col: +input('Notas', 'Notas')          
                 
               
 ons-template(id="addItem.html")
-  ons-dialog(var="addItemDialog" cancelable)
+  ons-dialog(var="addItemDialog" cancelable).relacion
     ons-toolbar(inline)
       .center Añadir nuevo
-    .m10.relacion
+    form(action="#", ng-controller="DialogCtrl", ng-submit="submit()").m10.relacion
       p Captura o selección de imagen
       ons-row
         ons-col.text-center
-          button(type="button", ng-click="alert('Tomar foto');").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
+          button(type="button", ng-click="camera()").mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored
             ons-icon(icon="ion-camera")
       p Datos
       ons-row
-        ons-col: +input('clave', 'Clave')
-        ons-col: +input('descripcion', 'Descripción')
+        ons-col: +input('clave', 'Clave', 'text', 'lateral_db_catalogos.html')
+        ons-col
       ons-row
         ons-col: +input('cantidadEnviada', 'Cantidad enviada')
         ons-col: +input('cantidadRecibida', 'Cantidad recibida')
-        ons-col: +input('diferencia', 'Diferencia')
       ons-row
         ons-col.text-center
           button(type="button", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
+            ons-icon(icon="ion-close")
+            |  Cancelar
+        ons-col.text-center
+          button(type="submit", ng-click="addItemDialog.hide()").mdl-button.mdl-js-button.mdl-button--colored
             ons-icon(icon="ion-plus-round")
             |  Añadir elemento
